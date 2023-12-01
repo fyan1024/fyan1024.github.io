@@ -1,5 +1,5 @@
 baseURL = "https://fyan1024.github.io/"
-languageCode = "en-us"
+languageCode = "zh-cn"
 title = "Fyan`s Blog"
 theme = "hugo-ink"
 paginate = 5
