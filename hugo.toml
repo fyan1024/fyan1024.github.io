@@ -1,6 +1,6 @@
 baseURL = "https://fyan1024.github.io/"
 languageCode = "en-us"
-title = "Ink"
+title = "Fyan`s Blog"
 theme = "hugo-ink"
 paginate = 5
 
@@ -14,10 +14,10 @@ googleAnalytics = "UA-123-45"
 disqusShortname = "ink-demo"
 
 [params]
-	subtitle = "NOT AN EXPERT. Just A Guy."
+	subtitle = "Fortune favors the bold."
 
 	# Optional 64x64 avatar image.
-	avatar = "https://image.freepik.com/free-vector/young-man-head-with-beard-avatar-character_24877-36786.jpg"
+	avatar = "https://i1.rgstatic.net/ii/profile.image/11431281139172330-1680830132097_Q128/Xiaolu-Yan-2.jpg"
 
 	# Content types to disable Disqus on.
 	disableDisqusTypes = ["page"]
