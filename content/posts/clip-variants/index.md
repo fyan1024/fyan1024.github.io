@@ -1,7 +1,7 @@
 ---
 title: "Clip Variants"
 date: 2023-12-02T22:20:55+08:00
-tag: [clip]
+tags: [clip]
 ---
 
 
