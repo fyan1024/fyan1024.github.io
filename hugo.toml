@@ -13,6 +13,7 @@ pygmentscodefencesguesssyntax = true
 googleAnalytics = "UA-123-45"
 disqusShortname = "ink-demo"
 
+
 [params]
 	subtitle = "FORTUNE favors the BOLD."
 
@@ -23,6 +24,7 @@ disqusShortname = "ink-demo"
 	disableDisqusTypes = ["page"]
 	
 	featherIconsCDN = true
+	toc = true
 
 	mode = "auto" # "dark" or "auto"
 	# customCSS = "css/custom.css"  # Custom CSS applied to default styles.
