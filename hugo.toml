@@ -1,5 +1,5 @@
 baseURL = "https://fyan1024.github.io/"
-languageCode = "zh-cn"
+languageCode = "en-us"
 title = "Fyan`s Blog"
 theme = "hugo-ink"
 paginate = 5
@@ -61,4 +61,4 @@ icon = "rss"
 url = "/index.xml"
 
 [taxonomies]
-  tag = 'tags'
+   tag = "tags"
