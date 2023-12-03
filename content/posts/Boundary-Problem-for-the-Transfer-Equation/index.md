@@ -5,7 +5,6 @@ draft: false
 tags: [photon-vegetation]
 ---
 
-### Introduction
 用于描述辐射场的函数是辐射度$I_\lambda(r, \Omega)$，取决于波长 $\lambda$、位置 $\mathrm{r}=(\mathrm{x}, \mathrm{y}, \mathrm{z})$ 和方向 $\Omega=(\Omega_{\mathrm{x}}, \Omega_y, \Omega_z)$；$\Omega_x^2+\Omega_y^2+\Omega_z^2=1$。传输方程是相空间能量守恒的表述。确定以下表达式中每个组成部分的物理性质：
 ![辐射传输方程](vx_images/504320622231244.png)
 
@@ -51,3 +50,5 @@ $$
 ![](vx_images/212022323236908.png)
 
 这里，$0 \leqslant \mathrm{z} \leqslant \mathrm{H}$，$\Omega \sim(\mu, \phi)$，$-1 \leqslant \mu \leqslant 1$，$0 \leqslant \phi \leqslant 2 \pi$。方程（1.5）本身并不能提供传输过程的完整描述。需要指定介质边界处的入射辐射，即边界条件的规定。
+
+[Next]({{< ref "/Boundary-Conditions" >}})
