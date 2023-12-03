@@ -26,7 +26,7 @@ tags: [photon-vegetation]
 微分散射截面表达为：$d \sigma / d \Omega$。
 其中 $\Omega$ 为出射粒子的空间角。这个微分表示每单位空间角的出射粒子对应的入射区域，因此对这个量在一个完整的空间角中积分即可获得总截面。微分散射截面在量子力学中可方便地由 $|f(\theta)|^2$ 求得；而 $f(\theta)$ 由量子力学中散射结果，进行渐近分析分解为入射波与散射波后 (如用分波方法分解为球谐函数，或玻恩近似），设定入射项的系数为 1 ，出射项系数即为 $f(\theta) / r$ 。
 
-函数 $\sigma(\mathrm{r}, \boldsymbol{\Omega})$ 称作总散射截面，是散射截面 $\sigma_{\mathrm{s}^{\prime}}$ 和吸收截面 $\sigma_{\mathrm{a}}$ 的和：
+函数 $\sigma(\mathrm{r}, \boldsymbol{\Omega})$ 称作总交互截面，是散射截面 $\sigma_{\mathrm{s}^{\prime}}$ 和吸收截面 $\sigma_{\mathrm{a}}$ 的和：
 $$
 \sigma(\mathrm{r}, \underline{\Omega})=\sigma_{\mathrm{s}^{\prime}}(\mathrm{r}, \underline{\Omega})+\sigma_{\mathrm{a}}(\mathrm{r}, \underline{\Omega}) \text {. }
 $$
@@ -39,3 +39,15 @@ $$
 $$
 \frac{\sigma_{\mathrm{s}^{\prime}}\left(\mathrm{r}, \underline{\Omega}^{\prime}\right)}{\sigma\left(\mathrm{r}, \underline{\Omega}^{\prime}\right)} \leqslant 1
 $$
+
+上述不等式确保了边界问题的解在传输方程（附录1）中的存在性和唯一性。函数 $Q(r, \Omega)$ 是外部辐射的源。
+
+方程（1.1）各项的物理含义是：第一项表示 $\mathrm{r}$ 处 $\Omega$ 方向辐射度的变化，其他项表示这些变化是由介质中的吸收和散射引起的（第二项），是由其他方向的散射引起的（第三项），或是由外部辐射引起的（第四项）。
+
+我们将分析的范围限定在散射介质的统计特性与水平坐标 $\mathrm{x}$ 和 $\mathrm{y}$ 无关的情况下。这样，辐射度仅与垂直坐标 $\mathrm{z}$ 有关。
+![](vx_images/529352123258165.png)
+这是平面几何中的辐射传输方程。我们假设介质具有物理深度 $\mathrm{H}$，并且垂直轴 $\mathrm{z}$ 是向下的（图1）。光子运动的方向由极角 $\theta$ 和方位角 $\phi$（从北向的方向计算）定义。记 $\mu=\cos \theta$，我们有 $\Omega_z=-\mu$。因此，（1.5）
+![](vx_images/237842223255667.png)
+![](vx_images/212022323236908.png)
+
+这里，$0 \leqslant \mathrm{z} \leqslant \mathrm{H}$，$\Omega \sim(\mu, \phi)$，$-1 \leqslant \mu \leqslant 1$，$0 \leqslant \phi \leqslant 2 \pi$。方程（1.5）本身并不能提供传输过程的完整描述。需要指定介质边界处的入射辐射，即边界条件的规定。
