@@ -1,5 +1,5 @@
 ---
-title: "Clip"
+title: "Learning Transferable Visual Models From Natural Language Supervision"
 date: 2023-12-02T22:20:55+08:00
 tags: [clip]
 ---
