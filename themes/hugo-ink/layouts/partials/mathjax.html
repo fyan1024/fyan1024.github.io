@@ -1,15 +1,4 @@
-<div class="footer wrapper">
-	<nav class="nav">
-		<div>{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }} <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
-	</nav>
-</div>
-
-{{ template "_internal/google_analytics_async.html" . }}
-{{- with .Site.Params.Social -}}
-<script>feather.replace()</script>
-{{- end -}}
-
-<!-- <script type="text/javascript"
+<script type="text/javascript"
         async
         src="https://cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 MathJax.Hub.Config({
@@ -43,4 +32,4 @@ code.has-jax {
     border: inherit;
     color: #515151;
 }
-</style> -->
+</style>

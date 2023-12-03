@@ -22,8 +22,11 @@ SAM结合clip的语义信息进行zero-shot语义分割，同时判断类别。
 Dclip 和 Dsam 分别是训练的CLIP的数据和SA-1B的子集。
 
 $$
-\begin{gathered}\mathcal{L}_{\text {CLIP }}=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}_{\text {CLIP }}}[1-\left.\phi^{\text {Pooling }}\left(\operatorname{Head}_{\text {CLIP }}\left(\operatorname{Enc}_{\text {SAM-CLIP }}(\boldsymbol{x})\right)\right)^T \operatorname{Enc}_{\text {CLIP }}(\boldsymbol{x})\right]\end{gathered}
+\begin{gathered}\mathcal{L}_{\text {CLIP }}=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}_{\text {CLIP }}}[1-\left.\phi^{\text {Pooling }}\left(\operatorname{Head}_{\text {CLIP }}\left(\operatorname{Enc}_{\text {SAM-CLIP }}(\boldsymbol{x})\right)\right)^T \operatorname{Enc}_{\text {CLIP }}(\boldsymbol{x})\right]
+\end{gathered}
 $$
+
+$\mathcal{L}_{\text {CLIP }}=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}_{\text {CLIP }}}\left[1-\phi^{\text {Pooling }}\left(\operatorname{Head}_{\text {CLIP }}\left(\operatorname{Enc}_{\text {SAM-CLIP }}(\boldsymbol{x})\right)\right)^T \operatorname{Enc}_{\text {CLIP }}(\boldsymbol{x})\right]$
 
 Enc SAM-clip 后的image feature，经过Head clip 的结果（HW×C）再经过最大池化得到每张图的1×C的embedding ，经过LN ，再经过浅层mlp作为预测的 embedding。
 Head clip 和 Enc SAM-clip 都是可学习的，Enc clip是固定权重的。
@@ -32,9 +35,9 @@ Head clip 和 Enc SAM-clip 都是可学习的，Enc clip是固定权重的。
 1.  head probing 固定Enc SAM-clip  只用$L_{clip}$训Head clip。
 2.  multi-task disillation Enc SAM-clip 解冻可训，Head clip 和 Head sam 都可训，损失是$L_{clip} + \lambda	L_{SAM}$  
 
-$$
-\begin{array}{r}\mathcal{L}_{\mathrm{SAM}}=\mathbb{E}_{(\boldsymbol{x}, \boldsymbol{g}) \sim \mathcal{D}_{\mathrm{SAM}}} \mathcal{L}_{\mathrm{FD}}\left(\operatorname{Head}_{\mathrm{SAM}}\left(\operatorname{Enc}_{\mathrm{SAM}-\mathrm{CLIP}}(\boldsymbol{x}),\right.\right. \\ \left.\left.\operatorname{PromptEnc}_{\mathrm{SAM}}(\boldsymbol{g})\right), \boldsymbol{z}\right)\end{array}
-$$
+$$L_{clip} + \lambda	L_{SAM}$$
+
+$$\begin{array}{r}\mathcal{L}_{\mathrm{SAM}}=\mathbb{E}_{(\boldsymbol{x}, \boldsymbol{g}) \sim \mathcal{D}_{\mathrm{SAM}}} \mathcal{L}_{\mathrm{FD}}\left(\operatorname{Head}_{\mathrm{SAM}}\left(\operatorname{Enc}_{\mathrm{SAM}-\mathrm{CLIP}}(\boldsymbol{x}),\right.\right. \\ \left.\left.\operatorname{PromptEnc}_{\mathrm{SAM}}(\boldsymbol{g})\right), \boldsymbol{z}\right)\end{array}$$
 
 
 - Contribution:
