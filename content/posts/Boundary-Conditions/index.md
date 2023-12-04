@@ -7,4 +7,9 @@ tags: [photon-vegetation]
 
 [Prev]({{< ref "/Boundary-Problem-for-the-Transfer-Equation" >}})
 
-test
+
+
+
+
+
+
