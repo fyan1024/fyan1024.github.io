@@ -52,9 +52,6 @@ $$
 有关解的存在性、唯一性和对初始数据的连续依赖性的数学问题已经被详细研究（例如，Vladimirov 1963; Case 和 Zweifel 1967）。一些涉及叶冠层传输方程解的存在性和唯一性的问题在附录 1 中进行了讨论。
 
 
-
-
-
-
+[Next]({{< ref "/Transfer-Equation-in-the-Plant-Canopy" >}})
 
 
