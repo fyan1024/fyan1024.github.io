@@ -43,9 +43,12 @@ draft: false
 
 ## Appendix:    
 
-### 自动标注大豆籽粒
+### 数据集：大豆籽粒自动标注
+> 链接：https://pan.baidu.com/s/1TohcW6ChlXnw6b1sAyygtA?pwd=ldaq 
+提取码：ldaq 
+--来自百度网盘超级会员V3的分享
 
-结合数字图像处理方法和视觉基础模型（[segment-anything](https://github.com/facebookresearch/segment-anything)）实现大豆籽粒的自动标注：
+结合数字图像处理方法和视觉基础模型（[segment-anything](https://github.com/facebookresearch/segment-anything)）实现大豆籽粒的自动标注，获得目标检测和语义/实例分割标注：
 ![](vx_images/5230817246938.png)![](vx_images/205490817242692.png)
 
 
