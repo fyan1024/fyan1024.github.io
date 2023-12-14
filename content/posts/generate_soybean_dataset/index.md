@@ -51,7 +51,7 @@ draft: false
 
 1. 使用图像滤波和边缘检测寻找到大豆边界。![](vx_images/10170017249681.png)
 2. 近似计算得到大豆质心。![](vx_images/416900417257714.png)![](vx_images/108870517250383.png)
-3. 将修正后的质心作为point prompt输入[segment-anything](https://github.com/facebookresearch/segment-anything)得到掩码，取掩码轮廓得到边界框和像素级别分割标签。![](vx_images/338100917260572.png)![](vx_images/413040917258176.png)
+3. 将修正后的质心作为point prompt输入[segment-anything](https://github.com/facebookresearch/segment-anything)得到掩码，取掩码轮廓得到边界框和像素级别分割标签。共37972颗大豆，其中手动调整质心修正25颗。![](vx_images/338100917260572.png)![](vx_images/413040917258176.png)
 
 
 ## Reference:    
