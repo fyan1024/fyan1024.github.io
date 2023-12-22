@@ -455,26 +455,23 @@ df.to_csv('种脐表型参数.csv', sep='\t', encoding='GBK', index=True)
 |                  | Hilum |           |        |        |      |
 |                  | Crack |           |        |        |      |
 
-##### 5.2.4.2 加入注意力机制提升模型精度
+##### 5.2.4.2 加入其他卷积和注意力机制提升模型精度
 
 
-| Models           | Class | Precision | Recall | mAP   | FPS |
-| :--------------- | :---- | :-------- | :----- | :---- | :-- |
-| YoloV8n          | All   | 0.74      | 0.656  | 0.728 |     |
-|                  | Hilum | 0.813     | 0.646  | 0.783 |     |
-|                  | Crack | 0.666     | 0.666  | 0.672 |     |
-| YoloV8-mobilevit | All   |           |        |       |     |
-|                  | Hilum |           |        |       |     |
-|                  | Crack |           |        |       |     |
-| YoloV8-ghost     | All   |           |        |       |     |
-|                  | Hilum |           |        |       |     |
-|                  | Crack |           |        |       |     |
-| YoloV8-ghost-p2  | All   |           |        |       |     |
-|                  | Hilum |           |        |       |     |
-|                  | Crack |           |        |       |     |
-| YoloV8-ghost-p6  | All   |           |        |       |     |
-|                  | Hilum |           |        |       |     |
-|                  | Crack |           |        |       |     |
+| Models                    | Class | Precision | Recall | mAP   | FPS |
+| :------------------------ | :---- | :-------- | :----- | :---- | :-- |
+| YoloV8n                   | All   | 0.74      | 0.656  | 0.728 |     |
+|                           | Hilum | 0.813     | 0.646  | 0.783 |     |
+|                           | Crack | 0.666     | 0.666  | 0.672 |     |
+| DySnakeConv               | All   |           |        |       |     |
+|                           | Hilum |           |        |       |     |
+|                           | Crack |           |        |       |     |
+| DySnakeConv-SegNext       | All   |           |        |       |     |
+|                           | Hilum |           |        |       |     |
+|                           | Crack |           |        |       |     |
+| DySnakeConv-SegNext-ghost | All   |           |        |       |     |
+|                           | Hilum |           |        |       |     |
+|                           | Crack |           |        |       |     |
 
 >Qi, Yaolei et al. “Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation.” ArXiv abs/2307.08388 (2023): n. pag.
 
