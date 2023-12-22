@@ -44,6 +44,55 @@ draft: false
 
 ## 五、Supplementary:    
 
+### 5.0 引入
+
+随着人工智能（AI）技术的不断进步，计算机视觉成为了环境可持续性和保护领域中的重要工具。通过对图像和视频的智能分析，计算机视觉技术为环境监测、资源管理和生态保护提供了强大的支持。
+
+计算机视觉社区对环境保护和植物表型组学领域表现出了越来越高的关注度。尽管过去计算机视觉主要集中于人脸识别、图像分类和目标检测等领域，但近年来，随着环境问题和农业可持续性日益受到关注，这两个领域引起了研究人员和学术界的广泛兴趣。
+
+#### 5.0.1 环境、可持续性和保护的计算机视觉
+
+在环境保护方面，计算机视觉被用于处理卫星图像、空中摄影图像以及无人机获取的数据。这些数据通过计算机视觉技术可以快速、准确地识别和监测森林覆盖、土地利用变化、气候变化迹象以及环境污染等问题。越来越多的研究致力于开发智能算法，用于自动化地分析大量环境数据，以帮助保护和维护地球的生态系统。
+
+计算机视觉的环境保护方面应用很多，例如：
+
+> 1. 计算机视觉极大地提高基于图像的生物多样性调查的效率
+Norouzzadeh, Mohammad Sadegh et al. “A deep active learning system for species identification and counting in camera trap images.” Methods in Ecology and Evolution 12 (2019): 150 - 161. ![](vx_images/17861418236927.png)
+
+> 2. 寻找濒危物种 
+Sara Beery. 2021. Scaling Biodiversity Monitoring for the Data Age. XRDS 27, 4 (Summer 2021), 14–18. https://doi.org/10.1145/3466857 ![](vx_images/371121818259367.png)
+
+> 3. 布置大量传感器检测生物，改善生态模型
+Tuia, D., Kellenberger, B., Beery, S. et al. Perspectives in machine learning for wildlife conservation. Nat Commun 13, 792 (2022). https://doi.org/10.1038/s41467-022-27980-y
+![](vx_images/76232218254503.png)
+
+> 4. 城市森林监测
+S. Beery et al., "The Auto Arborist Dataset: A Large-Scale Benchmark for Multiview Urban Forest Monitoring Under Domain Shift," 2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA, 2022, pp. 21262-21275, doi: 10.1109/CVPR52688.2022.02061. 
+![](vx_images/430492218248049.png)
+
+社区每年也有很多讨论，例如：
+
+1. NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning: Blending New and Existing Knowledge Systems
+2. Workshop on Machine Vision for Earth Observation and Environment Monitoring (BMVC) 2023 
+3. Machine Learning for Remote Sensing Workshop at ICLR 2023
+![](vx_images/26905916255686.png)
+
+#### 5.0.2 植物表型组学的计算机视觉
+
+在植物表型组学领域，计算机视觉技术应用于对植物的生长、形态和生理特征进行量化和分析。这些技术有助于科学家更好地理解植物的生长模式、遗传变化、适应性特征以及植物与环境之间的互动关系。通过对图像数据的智能处理，计算机视觉为植物学、农业学和生态学等领域提供了强大的工具，有助于改善作物的生长和产量，提高耐旱性和抗病性。
+
+表型组学应用，例如：
+
+> 1.全球麦穗检测数据集
+Etienne David, Mario Serouart, Daniel Smith, Simon Madec, Kaaviya Velumani, Shouyang Liu, Xu Wang, Francisco Pinto, Shahameh Shafiee, Izzat S. A. Tahir, et al. Global Wheat Head Detection 2021: An Improved Dataset for Benchmarking Wheat Head Detection Methods. Plant Phenomics. 2021;2021:DOI:10.34133/2021/9846158  
+![GWHD2021](vx_images/129062818241183.png)![](vx_images/180992918231713.png)
+> 2.玉米计数
+Haoyu Zheng, Xijian Fan, Weihao Bo, Xubing Yang, Tardi Tjahjadi, Shichao Jin. A Multiscale Point-Supervised Network for Counting Maize Tassels in the Wild. Plant Phenomics. 2023;5:0100.DOI:10.34133/plantphenomics.0100  
+![](vx_images/4113118234217.png)
+> 3.葡萄计数
+Yanan Li, Yuling Tang, Yifei Liu, Dingrun Zheng. Semi-supervised Counting of Grape Berries in the Field Based on Density Mutual Exclusion. Plant Phenomics. 2023;5:0115.DOI:10.34133/plantphenomics.0115 
+![](vx_images/257153318243164.png)
+
 ### 5.1 必做：籽粒长、籽粒宽、横截面积、横截周长、圆度
 
 #### 5.1.1 数据集：大豆籽粒自动标注
@@ -105,7 +154,55 @@ draft: false
 
 计算获得籽粒长、籽粒宽、横截面积、横截周长、圆度
 
+```python
+import cv2
+import numpy as np
 
+# 读取二值化的图片
+image = cv2.imread('ZS110003_19_G_bbox_mask_6.png', cv2.IMREAD_GRAYSCALE)
+
+# 找到轮廓
+contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# 假设只有一个轮廓
+contour = contours[0]
+
+# 计算面积和周长
+area = cv2.contourArea(contour)
+perimeter = cv2.arcLength(contour, True)
+
+# 转换周长和面积为毫米单位
+scale = 12  # 12像素 = 1mm
+perimeter_mm = perimeter / scale
+area_mm2 = area / (scale ** 2)
+
+# 计算圆度
+circularity = (4 * np.pi * area) / (perimeter ** 2)
+
+# 输出面积、周长、圆度
+print(f"面积: {area_mm2} 毫米^2")
+print(f"周长: {perimeter_mm} 毫米")
+print(f"圆度: {circularity}")
+
+# 可视化轮廓
+contour_image = np.zeros_like(image)
+cv2.drawContours(contour_image, [contour], 0, 255, 1)
+cv2.imshow('Contour Image', contour_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# 获取外接矩形的宽度和高度
+(_, _), (width_pixel, height_pixel), _ = cv2.minAreaRect(contour)
+
+# 计算实际长度和宽度
+length_mm = width_pixel / scale
+width_mm = height_pixel / scale
+
+# 输出长度和宽度
+print(f"长度: {length_mm} 毫米")
+print(f"宽度: {width_mm} 毫米")
+
+```
 
 ### 5.2 必做：种脐长、种脐宽、种脐面积、种脐周长
 
@@ -190,9 +287,20 @@ $$R=\frac{T P}{T P+F N}$$
 
 $$A P=\int_0^1 P(R) d R$$
 
-#### 5.2.2 数据和数据预处理
+#### 5.2.2 数据和数据增强
 
 分别使用了具有种脐和裂纹的单个籽粒和整盘籽粒的目标检测数据。
+
+#### 5.2.2.1 数据
+
+具有种脐和裂纹的单个籽粒目标检测数据来自第八组，训练集含723颗大豆，验证203张，测试集103张。
+
+#### 5.2.2.2 数据
+
+具有种脐和裂纹的单个籽粒目标检测数据来自第七组，数据集共150张。
+
+
+#### 5.2.2.3 数据增强
 
 数据增强是在训练神经网络时用于增加训练样本多样性的一种技术。它通过对原始图像进行变换或操作，生成新的训练样本。首先使用几种常见的数据增强方式进行数据增强，包括：
 
@@ -206,6 +314,9 @@ $$A P=\int_0^1 P(R) d R$$
 ![](vx_images/501513915242700.png)
 
 #### 5.2.3 单个籽粒目标检测
+
+##### 5.2.3.1 Yolov8n和轻量化模型
+
 
 | Models                    | Class   | Precision | Recall | mAP    | FPS |
 | :------------------------- | :------ | :---------- | :------ | :----- | :-- |
@@ -225,8 +336,106 @@ $$A P=\int_0^1 P(R) d R$$
 | 包含了P6层，有四个输出层 | Hilum   | 0.806      | 0.66    | 0.763 |      |
 | 针对高分辨率图像          | Crack   | 0.613      | 0.705   | 0.605 |      |
 
+
+> GhostNet失去效果，可能是数据集不够大导致的，Ghost模块无法提取到足够多相似的特征对。
+Han, Kai et al. “GhostNet: More Features From Cheap Operations.” 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) (2019): 1577-1586.
+![](vx_images/442641720263613.png)
+
+计算bbox得到种脐表型参数
+
+```python
+import cv2
+import numpy as np
+import pandas as pd
+# 读取txt文件获取bbox信息
+def read_bbox_info(txt_file):
+    with open(txt_file, 'r') as file:
+        lines = file.readlines()
+        bbox_info = [list(map(float, line.strip().split())) for line in lines]
+    return bbox_info
+
+# 计算椭圆参数（中心点、长短轴长度、旋转角度）
+def get_ellipse_parameters(bbox):
+    x, y, w, h = bbox
+    center_x = x + w / 2
+    center_y = y + h / 2
+    return (center_x, center_y), (w / 2, h / 2), 0
+
+# 将归一化坐标转换为绝对坐标
+def normalize_bbox_to_absolute(bbox, image_shape):
+    img_h, img_w = image_shape[:2]
+    x, y, w, h = bbox
+    x_abs = int(x * img_w)
+    y_abs = int(y * img_h)
+    w_abs = int(w * img_w)
+    h_abs = int(h * img_h)
+    return x_abs, y_abs, w_abs, h_abs
+
+def calculate_actual_dimensions(bbox, image_shape, scale=12):
+    x, y, w, h = bbox
+    img_h, img_w = image_shape[:2]
+
+    x_abs, y_abs, w_abs, h_abs = normalize_bbox_to_absolute(bbox, image_shape)
+
+    actual_width_mm = w * img_w / scale
+    actual_height_mm = h * img_h / scale
+
+    return actual_width_mm, actual_height_mm
+
+def calculate_ellipse_metrics(bbox, image_shape, scale=12):
+    center, axes, angle = get_ellipse_parameters(bbox)
+
+    # Calculate the actual dimensions in millimeters
+    actual_width_mm, actual_height_mm = calculate_actual_dimensions(bbox, image_shape, scale)
+
+    # Calculate the area of the inscribed ellipse
+    area = np.pi * axes[0] * axes[1]
+
+    # Calculate the perimeter of the inscribed ellipse
+    perimeter = 2 * np.pi * np.sqrt((axes[0] ** 2 + axes[1] ** 2) / 2)
+
+    # Convert perimeter and area to millimeter units
+    perimeter_mm = perimeter / scale
+    area_mm2 = area / (scale ** 2)
+
+    return actual_width_mm, actual_height_mm, perimeter_mm, area_mm2
+
+# 读取图像和bbox信息
+image_file = 'ZS110376_19_G_bbox_3.jpg'
+txt_file = 'ZS110376_19_G_bbox_3.txt'
+
+image = cv2.imread(image_file)
+bbox_info = read_bbox_info(txt_file)
+bbox = bbox_info[0][1:5]
+
+# 获取图像长宽
+image_shape = image.shape
+
+# 计算实际尺寸和椭圆指标
+actual_width, actual_height, perimeter_mm, area_mm2 = calculate_ellipse_metrics(bbox, image_shape)
+
+print(f"Actual Width (mm): {actual_width}")
+print(f"Actual Height (mm): {actual_height}")
+print(f"Perimeter (mm): {perimeter_mm}")
+print(f"Area (mm^2): {area_mm2}")
+
+# 将参数写入表格
+data = {
+    '种脐长': actual_height,
+    '种脐宽': actual_height,
+    '种脐面积': area_mm2,
+    '种脐周长': perimeter_mm,
+}
+
+# 创建DataFrame并写入CSV文件
+df = pd.DataFrame(data, index=['ZS110003_19_G_bbox_6'])
+df.to_csv('种脐表型参数.csv', sep='\t', encoding='GBK', index=True)
+
+```
+
 #### 5.2.4 整盘籽粒目标检测
 
+##### 5.2.4.1 Yolov8n和轻量化模型
 
 | Models           | Class | Precision | Recall | mAP    | FPS |
 | :--------------- | :----- | :-------- | :----- | :----- | :-- |
@@ -246,11 +455,198 @@ $$A P=\int_0^1 P(R) d R$$
 |                  | Hilum |           |        |        |      |
 |                  | Crack |           |        |        |      |
 
+##### 5.2.4.2 加入注意力机制提升模型精度
+
+
+| Models           | Class | Precision | Recall | mAP   | FPS |
+| :--------------- | :---- | :-------- | :----- | :---- | :-- |
+| YoloV8n          | All   | 0.74      | 0.656  | 0.728 |     |
+|                  | Hilum | 0.813     | 0.646  | 0.783 |     |
+|                  | Crack | 0.666     | 0.666  | 0.672 |     |
+| YoloV8-mobilevit | All   |           |        |       |     |
+|                  | Hilum |           |        |       |     |
+|                  | Crack |           |        |       |     |
+| YoloV8-ghost     | All   |           |        |       |     |
+|                  | Hilum |           |        |       |     |
+|                  | Crack |           |        |       |     |
+| YoloV8-ghost-p2  | All   |           |        |       |     |
+|                  | Hilum |           |        |       |     |
+|                  | Crack |           |        |       |     |
+| YoloV8-ghost-p6  | All   |           |        |       |     |
+|                  | Hilum |           |        |       |     |
+|                  | Crack |           |        |       |     |
+
+>Qi, Yaolei et al. “Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation.” ArXiv abs/2307.08388 (2023): n. pag.
+
+ICCV2023 动态蛇形卷积（Dynamic Snake Convolution）用于管状结构分割优势：
+1. 细长微弱的局部结构特征与复杂多变的全局形态特征。
+2. 管状结构符合局部籽粒细节。
+
+> Guo, Meng-Hao et al. “SegNeXt: Rethinking Convolutional Attention Design for Semantic Segmentation.” ArXiv abs/2209.08575 (2022): n. pag.
+编码器参考 SegNeXt，有微弱涨点。
+
+### 5.3 选做：尝试得到每个大豆籽粒的种皮颜色（不含种脐部分）、种脐颜色。
+提示：需要自行构建特定部位的颜色提取算法，尽可能地表征出种皮和种脐的真实颜色，分析该算法的可行性、鲁棒性。
+
+#### 5.3.1 提取籽粒种皮颜色
+
+1. 读取图像和数据： 通过 cv2.imread 读取了原始图像和包含 bbox 信息的 TXT 文件，以及用于遮罩的 PNG 图像。
+2. 去除黑色区域： remove_black_regions 函数将读取的 PNG 图像转换为灰度图，并根据阈值将黑色部分转换成白色，然后找到白色（籽粒）区域的轮廓，并创建一个遮罩来表示这些区域。
+3. 去除 bbox 区域： remove_bbox_regions 函数根据从 TXT 文件中读取的 bbox 信息，在图像中去除了相应的区域。
+4. 合并处理后的图像： 将去除黑色区域和 bbox 区域后的图像通过按位与操作合并，得到最终剩余的区域图像。
+5. 计算剩余区域的平均颜色： calculate_average_color 函数计算了剩余区域的平均 RGB 颜色值。
+
+代码如下：
+
+```python
+import cv2
+import numpy as np
+
+# 读取txt文件获取bbox信息
+def read_bbox_info(txt_file):
+    with open(txt_file, 'r') as file:
+        lines = file.readlines()
+        bbox_info = [list(map(float, line.strip().split())) for line in lines]
+    return bbox_info
+
+def remove_black_regions(mask_image):
+    # Convert the image to grayscale
+    gray = cv2.cvtColor(mask_image, cv2.COLOR_BGR2GRAY)
+    
+    # Threshold the image to create a mask
+    _, thresh = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
+    
+    # Find contours of the white regions
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    # Create a mask for the white regions
+    mask = np.zeros_like(mask_image)
+    cv2.drawContours(mask, contours, -1, (255, 255, 255), thickness=cv2.FILLED)
+    
+    return mask
+
+def remove_bbox_regions(image, bbox_info):
+    for bbox in bbox_info:
+        x, y, w, h = list(map(int, bbox[1:5]))
+        image[y:y+h, x:x+w] = 0
+
+    return image
+
+def calculate_average_color(image):
+    average_color = np.mean(image, axis=(0, 1))
+    return average_color
+
+mask_image = cv2.imread('ZS110376_19_G_bbox_mask_3.png')
+mask_no_black = remove_black_regions(mask_image)
+
+bbox_info = read_bbox_info('ZS110376_19_G_bbox_3.txt')
+
+original_image = cv2.imread('ZS110376_19_G_bbox_3.jpg')
+
+image_no_bbox = remove_bbox_regions(original_image.copy(), bbox_info)
+
+final_image = cv2.bitwise_and(image_no_bbox, mask_no_black)
+
+average_color = calculate_average_color(final_image)
+print(f"Average Color (BGR): {average_color}")
+
+average_color = average_color.astype(int)
+average_color_rgb = tuple(average_color[::-1])  # Convert BGR to RGB
+print(f"Average Color (RGB): {average_color_rgb}")
+
+"""
+Average Color (BGR): [124.47609718 145.48092999 159.72139498]
+Average Color (RGB): (159, 145, 124)
+"""
+```
+可视化RGB值
+```python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+color_rgb = (159, 145, 124)
+
+visualization = np.full((100, 100, 3), color_rgb[::-1], dtype=np.uint8)
+
+plt.imshow(cv2.cvtColor(visualization, cv2.COLOR_BGR2RGB))
+plt.axis('off')  
+plt.title(f"Color RGB: {color_rgb}")  # Display RGB values in the title
+plt.show()
+
+```
+
+![](vx_images/476983819236049.png)
 
 
 
-### 5.3 选做：
+#### 5.3.2 提取种脐种皮颜色
 
+```python
+import cv2
+import numpy as np
 
+# 读取txt文件获取bbox信息
+def read_bbox_info(txt_file):
+    with open(txt_file, 'r') as file:
+        line = file.readline().strip()
+        bbox_info = list(map(float, line.split()))
+    return bbox_info
+
+# 计算裁剪后区域的平均RGB值
+def calculate_bbox_average_color(image, bbox_info):
+    bbox_colors = []
+
+    x = int(bbox_info[1] * image.shape[1])
+    y = int(bbox_info[2] * image.shape[0])
+    w = int(bbox_info[3] * image.shape[1])
+    h = int(bbox_info[4] * image.shape[0])
+
+    print(x, y, w, h)
+    # Ensure bbox region is within image bounds
+    if x >= 0 and y >= 0 and w > 0 and h > 0 and x + w / 2 <= image.shape[1] and y + h / 2 <= image.shape[0]:
+        bbox_region = image[y:y+h, x:x+w]
+        
+        print(len(bbox_region))
+        # 计算裁剪后区域的平均RGB值
+        if bbox_region.size > 0:
+            average_color = np.mean(bbox_region, axis=(0, 1))
+            bbox_colors.append(average_color)
+
+    return bbox_colors
+
+# 读取原始图像
+original_image = cv2.imread('ZS110376_19_G_bbox_3.jpg')
+
+# 读取txt文件中的bbox信息
+bbox_info = read_bbox_info('ZS110376_19_G_bbox_3.txt')
+
+# 计算裁剪后区域的平均RGB值
+bbox_average_colors = calculate_bbox_average_color(original_image, bbox_info)
+
+print("Average RGB Colors of Bboxes:")
+for i, color in enumerate(bbox_average_colors, 1):
+    print(f"Bbox {i}: {color}")
+
+```
+
+可视化RGB值
+```python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+color_rgb = (134, 147, 156)
+
+visualization = np.full((100, 100, 3), color_rgb[::-1], dtype=np.uint8)
+
+plt.imshow(cv2.cvtColor(visualization, cv2.COLOR_BGR2RGB))
+plt.axis('off')  
+plt.title(f"Color RGB: {color_rgb}")  # Display RGB values in the title
+plt.show()
+```
+![](vx_images/309245219236658.png)
+
+#### 5.3.3 可行性、鲁棒性分析
 
 
