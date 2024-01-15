@@ -44,55 +44,6 @@ draft: false
 
 ## 五、Supplementary:    
 
-### 5.0 引入
-
-随着人工智能（AI）技术的不断进步，计算机视觉成为了环境可持续性和保护领域中的重要工具。通过对图像和视频的智能分析，计算机视觉技术为环境监测、资源管理和生态保护提供了强大的支持。
-
-计算机视觉社区对环境保护和植物表型组学领域表现出了越来越高的关注度。尽管过去计算机视觉主要集中于人脸识别、图像分类和目标检测等领域，但近年来，随着环境问题和农业可持续性日益受到关注，这两个领域引起了研究人员和学术界的广泛兴趣。
-
-#### 5.0.1 环境、可持续性和保护的计算机视觉
-
-在环境保护方面，计算机视觉被用于处理卫星图像、空中摄影图像以及无人机获取的数据。这些数据通过计算机视觉技术可以快速、准确地识别和监测森林覆盖、土地利用变化、气候变化迹象以及环境污染等问题。越来越多的研究致力于开发智能算法，用于自动化地分析大量环境数据，以帮助保护和维护地球的生态系统。
-
-计算机视觉的环境保护方面应用很多，例如：
-
-> 1. 计算机视觉极大地提高基于图像的生物多样性调查的效率
-Norouzzadeh, Mohammad Sadegh et al. “A deep active learning system for species identification and counting in camera trap images.” Methods in Ecology and Evolution 12 (2019): 150 - 161. ![](vx_images/17861418236927.png)
-
-> 2. 寻找濒危物种 
-Sara Beery. 2021. Scaling Biodiversity Monitoring for the Data Age. XRDS 27, 4 (Summer 2021), 14–18. https://doi.org/10.1145/3466857 ![](vx_images/371121818259367.png)
-
-> 3. 布置大量传感器检测生物，改善生态模型
-Tuia, D., Kellenberger, B., Beery, S. et al. Perspectives in machine learning for wildlife conservation. Nat Commun 13, 792 (2022). https://doi.org/10.1038/s41467-022-27980-y
-![](vx_images/76232218254503.png)
-
-> 4. 城市森林监测
-S. Beery et al., "The Auto Arborist Dataset: A Large-Scale Benchmark for Multiview Urban Forest Monitoring Under Domain Shift," 2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA, 2022, pp. 21262-21275, doi: 10.1109/CVPR52688.2022.02061. 
-![](vx_images/430492218248049.png)
-
-社区每年也有很多讨论，例如：
-
-1. NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning: Blending New and Existing Knowledge Systems
-2. Workshop on Machine Vision for Earth Observation and Environment Monitoring (BMVC) 2023 
-3. Machine Learning for Remote Sensing Workshop at ICLR 2023
-![](vx_images/26905916255686.png)
-
-#### 5.0.2 植物表型组学的计算机视觉
-
-在植物表型组学领域，计算机视觉技术应用于对植物的生长、形态和生理特征进行量化和分析。这些技术有助于科学家更好地理解植物的生长模式、遗传变化、适应性特征以及植物与环境之间的互动关系。通过对图像数据的智能处理，计算机视觉为植物学、农业学和生态学等领域提供了强大的工具，有助于改善作物的生长和产量，提高耐旱性和抗病性。
-
-表型组学应用，例如：
-
-> 1.全球麦穗检测数据集
-Etienne David, Mario Serouart, Daniel Smith, Simon Madec, Kaaviya Velumani, Shouyang Liu, Xu Wang, Francisco Pinto, Shahameh Shafiee, Izzat S. A. Tahir, et al. Global Wheat Head Detection 2021: An Improved Dataset for Benchmarking Wheat Head Detection Methods. Plant Phenomics. 2021;2021:DOI:10.34133/2021/9846158  
-![GWHD2021](vx_images/129062818241183.png)![](vx_images/180992918231713.png)
-> 2.玉米计数
-Haoyu Zheng, Xijian Fan, Weihao Bo, Xubing Yang, Tardi Tjahjadi, Shichao Jin. A Multiscale Point-Supervised Network for Counting Maize Tassels in the Wild. Plant Phenomics. 2023;5:0100.DOI:10.34133/plantphenomics.0100  
-![](vx_images/4113118234217.png)
-> 3.葡萄计数
-Yanan Li, Yuling Tang, Yifei Liu, Dingrun Zheng. Semi-supervised Counting of Grape Berries in the Field Based on Density Mutual Exclusion. Plant Phenomics. 2023;5:0115.DOI:10.34133/plantphenomics.0115 
-![](vx_images/257153318243164.png)
-
 ### 5.1 必做：籽粒长、籽粒宽、横截面积、横截周长、圆度
 
 #### 5.1.1 数据集：大豆籽粒自动标注
