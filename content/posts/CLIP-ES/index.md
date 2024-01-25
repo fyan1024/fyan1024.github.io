@@ -2,6 +2,8 @@
 title: "CLIP ES"
 date: 2023-12-17T14:26:49+08:00
 draft: false
+tags: [WSSS]
+
 ---
 
 黑色星期五冲动消费scispace一年会员，基于AI的阅读助手，不打折买比较肉疼。
