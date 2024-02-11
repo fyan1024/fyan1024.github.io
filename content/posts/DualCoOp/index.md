@@ -29,18 +29,37 @@ $$
 \end{aligned}
 $$
 其中每个$V$是一个可学习的单词嵌入向量（例如，在CLIP [48]中的维度为512），CLS是给定的类别名称。$N^{+}$和$N^{-}$分别是正和负提示中学习的单词标记的数量。为了简化，我们在实验中设置$N^{+}=N^{-}$。在解决具有部分标签的MLR时，我们为每个类别学习一对正和负提示（即类特定的提示对），并在零射击MLR中学习一对适用于所有类别的提示对。有了一对提示，我们计算二元分类输出$p$如下：
+
 $$
 p=\frac{\exp \left(\left<A\left(E_v(I)\right), E_t\left(\text{Prompt}^{+}\right)\right>/ \tau\right)}{\exp \left(\left<A\left(E_v(I)\right), E_t\left(\text{Prompt}^{+}\right)\right>/ \tau\right)+\exp \left(\left<A\left(E_v(I)\right), E_t\left(\text{Prompt}^{-}\right)\right>/ \tau\right)},
 $$
+
+- $p$ 是对于给定图像 $I$ 和标签的预测概率。
+- $E_v(I)$ 是图像 $I$ 经过视觉编码器编码后的特征表示。
+- $E_t(\text{Prompt}^{+})$ 和 $E_t(\text{Prompt}^{-})$ 分别是与目标类别相关的正向和负向提示的文本编码表示。
+- $\langle \cdot, \cdot \rangle$ 表示向量之间的点积，这里是用来计算视觉特征与文本特征之间的相似度。
+- $A(\cdot)$ 是自适应地减少了视觉特征的空间维度的函数，用于适应地汇总每个类别的视觉特征。在这个公式中，$A(\cdot)$ 会将每个区域的特征映射到文本空间中。
+- $\tau$ 是一个温度参数，用于控制指数函数的平滑度。
+
+公式的计算流程是这样的：
+1. 首先，计算图像特征 $E_v(I)$ 和正向提示的文本特征 $E_t(\text{Prompt}^{+})$ 之间的点积，然后除以温度参数 $\tau$ 并进行指数化。
+2. 同样地，计算图像特征 $E_v(I)$ 和负向提示的文本特征 $E_t(\text{Prompt}^{-})$ 之间的点积，然后除以温度参数 $\tau$ 并进行指数化。
+3. 分别将正向和负向的指数化结果相加。
+4. 将正向的指数化结果除以上一步的结果，得到最终的概率值。
+
+这个公式的目的是利用图像的视觉特征和类别的文本特征来预测每个标签的概率，从而实现多标签图像识别任务。`类似softmax`
+
 其中$\left<\cdot, \cdot\right>$表示余弦相似度，$p$是对给定（图像，标签）对作为正样本的预测概率。$E_v(\cdot)$和$E_t(\cdot)$分别是来自视觉语言预训练的视觉和文本编码器。$A(\cdot)$是我们新的聚合函数，用于自适应地减少每个类别的视觉特征的空间维度，接下来将讨论。
 
 **类别特定区域特征聚合。** 在多标签图像识别中，常见的情况是多个对象出现在图像的不同区域。对所有类别产生单个图像级特征向量的汇聚会导致次优性能，因为空间信息被减少，不同的对象被混合在一起。在这项工作中，我们重新构造了CLIP [48]中视觉编码器的最后一个多头注意力池化层，并应用了类别特定池化来自适应地聚合多标签设置中的区域特征。CLIP中的原始注意力池化层首先对视觉特征图进行池化，然后将全局特征向量投影到文本空间，如下所示：
+
 $$
 \begin{aligned}
 & \operatorname{AttrPool}(x)=\operatorname{Proj}_{v \rightarrow t}\left(\sum_i \operatorname{softmax}\left(\frac{q(\bar{x}) k\left(x_i\right)^T}{C}\right) \cdot v\left(x_i\right)\right) \\
 & =\sum_i \operatorname{softmax}\left(\frac{q(\bar{x}) k\left(x_i\right)^T}{C}\right) \cdot \operatorname{Proj}_{v \rightarrow t}\left(v\left(x_i\right)\right)=\operatorname{Pool}\left(\operatorname{Proj}_{v \rightarrow t}\left(v\left(x_i\right)\right)\right),
 \end{aligned}
 $$
+
 其中$q, v$和$k$是独立的线性嵌入层，$x=E_v(I)$是视觉编码器的输出特征图。通过移除池化操作，我们可以将每个区域$i$的视觉特征$x_i$投影到文本空间[70]：
 
 $$
@@ -87,6 +106,29 @@ $$
 **全标签训练。** 在MS-COCO上，我们使用100%的训练标签并对视觉编码器进行微调，DualCoOp实现了85.2%的mAP，在性能上优于以往的SOTA方法，如ASL [51]（85.0% mAP）和CSRA [74]（83.5% mAP），使用相同的ResNet-101骨干网络。没有对视觉编码器进行微调时，我们注意到我们的性能下降到了83.2%的mAP，尽管如此，仍然与ASL和CSRA的性能相当。这样的性能下降可能是由于用于预训练CLIP模型的图像-文本对中的噪声以及预训练任务与MLR任务之间的目标不一致造成的。这也表明，即使是使用更大规模的数据进行预训练，利用预训练的CLIP模型解决MLR任务也是非常困难的。
 
 **计算成本。** 我们使用相同的设备（一台Nvidia A100 GPU）比较DualCoOp和SARB [46]在训练/测试延迟和内存方面的计算成本（见表3）。对于当前的多标签识别任务，在推断之前，类别是预先设置的（即我们已经知道在推断过程中要考虑哪些类别）。在这种情况下，我们根据学习的提示和类别名称为每个类别计算文本特征。然后，在测试期间，我们使用预先计算的文本特征来预测每个图像。由于文本特征是预先计算的（计算开销非常轻），因此在推断过程中不执行文本编码器。对于训练，基于CLIP的方法稍微提高了延迟时间和内存消耗，因为在前向过程中同时执行图像和文本编码器，并且在DualCoOp中只更新提示。
+
+###  代码
+
+**训练**
+```python
+python train.py --config_file configs/models/rn101_ep50.yaml --datadir ../VOC2007/ --dataset_config_file configs/datasets/voc2007.yaml --input_size 224 --lr 0.001 --loss_w 0.03 -pp 1
+```
+
+**推理**
+```python
+python val.py --config_file configs/models/rn101_ep50.yaml --datadir ../VOC2007/ --dataset_config_file configs/datasets/voc2007.yaml --input_size 224  --pretrained output/voc2007-DualCoop-RN101-cosine-bs32-e50/model_best.pth.tar --csc
+```
+![](vx_images/18895516240249.png)
+
+![](vx_images/158205516258675.png)
+
+#### 模型
+
+![](vx_images/584175220246542.png)
+
+![](vx_images/140482209240252.png)
+
+![](vx_images/248232809258678.png)
 
 
 
