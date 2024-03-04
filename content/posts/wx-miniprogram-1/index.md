@@ -88,3 +88,27 @@ console.log(cities); // ['北京', '上海', '广州']
 
 
 
+```js
+  GetAllBedData() {
+    db.collection('Bed').get({
+      success: (res) => {
+        console.log('查询成功，所有数据：', res.data);
+
+        const cityoptions = res.data.map((bed) => bed.city);
+        const uniquecityOptions = Array.from(new Set(cityoptions));
+
+        console.log('查询所有城市选项：', cityoptions);
+        console.log('写入城市选项：', uniquecityOptions);
+
+        this.setData({
+          beds: res.data,
+          cityOptions: cityoptions,
+          uniqueCityOptions: uniquecityOptions,
+        });
+      },
+      fail: (err) => {
+        console.error('查询失败：', err);
+      },
+    });
+  },
+```
