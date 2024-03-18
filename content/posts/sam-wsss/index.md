@@ -83,6 +83,41 @@ $$
 #### 代码
 
 
+### ALNet
+
+Auxiliary Learning-Based Network for Weakly Supervised Building Extraction From High-Resolution Remote Sensing Images
+
+#### 摘要
+
+
+#### 主要贡献 
+
+
+#### 方法
+
+
+#### 代码
+
+### Superpixel Consistency 
+
+Superpixel Consistency Saliency Map Generation for Weakly Supervised Semantic Segmentation of Remote Sensing Images
+
+#### 摘要
+
+
+#### 主要贡献 
+
+
+#### 方法
+
+
+#### 代码
+
+
+
+
+
+
 
 ## Dataset
 
