@@ -5,114 +5,114 @@ theme = 'hugo-theme-relearn'
 
 
 [params]
-  additionalContentLanguage = ['zh-cn']
-  alwaysopen = ''
-  breadcrumbSeparator = '>'
-  collapsibleMenu = true
-  customMathJaxURL = ''
-  customMermaidURL = ''
-  customOpenapiURL = ''
-  disableAssetsBusting = false
-  disableBreadcrumb = false
-  disableExplicitIndexURLs = false
-  disableGeneratorVersion = false
-  disableHoverBlockCopyToClipBoard = false
-  disableInlineCopyToClipBoard = true
-  disableLandingPageButton = true
-  disableLanguageSwitchingButton = false
-  disableMathJax = true
-  disableMermaid = true
-  disableNextPrev = false
-  disableOpenapi = true
-  disableRandomIds = false
-  disableRootBreadcrumb = true
-  disableSearch = false
-  disableSearchHiddenPages = false
-  disableSeoHiddenPages = true
-  disableShortcutsTitle = false
-  disableTagHiddenPages = false
-  disableTermBreadcrumbs = false
-  disableToc = false
-  editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}'
-  externalLinkTarget = '_self'
-  highlightWrap = true
-  images = ['images/hero.png']
-  mathJaxInitialize = '{}'
-  mermaidInitialize = '{ "securityLevel": "loose" }'
-  mermaidZoom = true
-  ordersectionsby = 'weight'
-  showVisitedLinks = true
-  titleSeparator = '::'
+    additionalContentLanguage = ['zh-cn']
+    alwaysopen = ''
+    breadcrumbSeparator = '>'
+    collapsibleMenu = true
+    customMathJaxURL = ''
+    customMermaidURL = ''
+    customOpenapiURL = ''
+    disableAssetsBusting = false
+    disableBreadcrumb = false
+    disableExplicitIndexURLs = false
+    disableGeneratorVersion = false
+    disableHoverBlockCopyToClipBoard = false
+    disableInlineCopyToClipBoard = true
+    disableLandingPageButton = true
+    disableLanguageSwitchingButton = false
+    disableMathJax = true
+    disableMermaid = true
+    disableNextPrev = false
+    disableOpenapi = true
+    disableRandomIds = false
+    disableRootBreadcrumb = true
+    disableSearch = false
+    disableSearchHiddenPages = false
+    disableSeoHiddenPages = true
+    disableShortcutsTitle = false
+    disableTagHiddenPages = false
+    disableTermBreadcrumbs = false
+    disableToc = false
+    editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}'
+    externalLinkTarget = '_self'
+    highlightWrap = true
+    images = ['images/hero.png']
+    mathJaxInitialize = '{}'
+    mermaidInitialize = '{ "securityLevel": "loose" }'
+    mermaidZoom = true
+    ordersectionsby = 'weight'
+    showVisitedLinks = true
+    titleSeparator = '::'
 
-  [params.author]
-    name = 'Sören Weber'
+    [params.author]
+      name = 'Sören Weber'
 
-  [params.image]
-    errorlevel = 'error'
+    [params.image]
+      errorlevel = 'error'
 
-  [params.imageEffects]
-    border = true
-    lazy = true
-    lightbox = true
-    shadow = false
+    [params.imageEffects]
+      border = true
+      lazy = true
+      lightbox = true
+      shadow = false
 
-  [params.include]
-    errorlevel = 'error'
+    [params.include]
+      errorlevel = 'error'
 
-  [params.link]
-    errorlevel = 'error'
+    [params.link]
+      errorlevel = 'error'
 
-  [params.openapi]
-    errorlevel = 'error'
+    [params.openapi]
+      errorlevel = 'error'
 
-  [params.social]
-    facebook_admin = ''
-    twitter = ''
+    [params.social]
+      facebook_admin = ''
+      twitter = ''
 
-  [[params.themeVariant]]
-    auto = []
-    identifier = 'relearn-auto'
-    name = 'Relearn Light/Dark'
+    [[params.themeVariant]]
+      auto = []
+      identifier = 'relearn-auto'
+      name = 'Relearn Light/Dark'
 
-  [[params.themeVariant]]
-    identifier = 'relearn-light'
+    [[params.themeVariant]]
+      identifier = 'relearn-light'
 
-  [[params.themeVariant]]
-    identifier = 'relearn-dark'
+    [[params.themeVariant]]
+      identifier = 'relearn-dark'
 
-  [[params.themeVariant]]
-    identifier = 'relearn-bright'
+    [[params.themeVariant]]
+      identifier = 'relearn-bright'
 
-  [[params.themeVariant]]
-    auto = ['zen-light', 'zen-dark']
-    identifier = 'zen-auto'
-    name = 'Zen Light/Dark'
+    [[params.themeVariant]]
+      auto = ['zen-light', 'zen-dark']
+      identifier = 'zen-auto'
+      name = 'Zen Light/Dark'
 
-  [[params.themeVariant]]
-    identifier = 'zen-light'
+    [[params.themeVariant]]
+      identifier = 'zen-light'
 
-  [[params.themeVariant]]
-    identifier = 'zen-dark'
+    [[params.themeVariant]]
+      identifier = 'zen-dark'
 
-  [[params.themeVariant]]
-    auto = ['learn', 'neon']
-    identifier = 'retro-auto'
-    name = 'Retro Learn/Neon'
+    [[params.themeVariant]]
+      auto = ['learn', 'neon']
+      identifier = 'retro-auto'
+      name = 'Retro Learn/Neon'
 
-  [[params.themeVariant]]
-    identifier = 'neon'
+    [[params.themeVariant]]
+      identifier = 'neon'
 
-  [[params.themeVariant]]
-    identifier = 'learn'
+    [[params.themeVariant]]
+      identifier = 'learn'
 
-  [[params.themeVariant]]
-    identifier = 'blue'
+    [[params.themeVariant]]
+      identifier = 'blue'
 
-  [[params.themeVariant]]
-    identifier = 'green'
+    [[params.themeVariant]]
+      identifier = 'green'
 
-  [[params.themeVariant]]
-    identifier = 'red'
+    [[params.themeVariant]]
+      identifier = 'red'
 
 
 
@@ -224,7 +224,7 @@ theme = 'hugo-theme-relearn'
     # support for all used languages of your site.
     # This is handy for example if you are writing in Spanish but have lots of
     # source code on your page which typically uses English terminology.
-    additionalContentLanguage = [ "en" ]
+    # additionalContentLanguage = [ "en" ]
 
     # Additional code dependencies.
     # Default: See hugo.toml of the theme
