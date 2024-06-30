@@ -1,11 +1,11 @@
 baseURL = 'https://fyan1024.github.io'
-languageCode = 'zh-cn'
+languageCode = 'zh'
 title = 'Fyans new Hugo Site'
 theme = 'hugo-theme-relearn'
 
 
 [params]
-  additionalContentLanguage = ['zh-cn']
+  additionalContentLanguage = ['zh']
   alwaysopen = ''
   breadcrumbSeparator = '>'
   collapsibleMenu = true
