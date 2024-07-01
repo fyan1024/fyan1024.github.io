@@ -1,6 +1,6 @@
 +++
 archetype = "home"
-title = ""
+title = "This the Home Page"
 +++
 
 This is a new home page.
