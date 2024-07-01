@@ -1,6 +1,7 @@
 +++
 archetype = "home"
 title = "This the Home Page"
+disableMathJax = false
 +++
 
 This is a new home page.

@@ -3,3 +3,15 @@ languageCode = 'zh-CN'
 title = 'Fyans new Hugo Site'
 theme = 'hugo-theme-relearn'
 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
+
+          
