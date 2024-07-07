@@ -4,4 +4,5 @@ title = "MGI"
 weight = 1
 +++
 
-This is a new chapter.
+>Here are some useful links and sites.
+
