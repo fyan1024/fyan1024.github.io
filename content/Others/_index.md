@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Others"
-weight = 1
+weight = 2
 +++
 
 This is a new chapter.

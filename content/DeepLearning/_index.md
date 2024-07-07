@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "DeepLearning"
-weight = 1
+weight = 6
 +++
 
 This is a new chapter.

@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "MachineLearning"
-weight = 1
+weight = 5
 +++
 
 This is a new chapter.

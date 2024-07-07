@@ -4,22 +4,11 @@ title = "This the Home Page"
 disableMathJax = false
 +++
 
-This is a new home page.
+This is my new note page.
 
-中文显示
+*Current location@[$\mathrm{Wageningen}$](www.wur.nl/en.htm)*
 
-中文显示
-中文显示
-中文显示
+![Wageningen University & Research](vx_images/364994610240748.svg)
 
-LaTEX 能工作么 
-
-$test$
-
-
-
-$$test$$
-
-$\mathrm{test}$
 
 
