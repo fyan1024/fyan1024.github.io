@@ -1,5 +1,5 @@
 +++
-title = 'Linux'
+title = 'CN-Linux'
 date = 2024-07-08T12:23:33+08:00
 draft = false
 weight = 1
