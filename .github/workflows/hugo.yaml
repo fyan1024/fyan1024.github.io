@@ -59,7 +59,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://${{ github.repository_owner }}.github.io/"  
+            --baseURL "https://fyan1024.github.io/"  
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
