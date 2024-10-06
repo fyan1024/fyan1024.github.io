@@ -256,6 +256,663 @@ Bash 还支持自动补全功能。当命令输入到一半时，按下 **Tab** 
 
 ## 模式扩展
 
+### 波浪线扩展 
+
+波浪线 `~` 在 Bash 中会自动扩展为当前用户的主目录。
+
+```bash
+$ echo ~
+/home/me
+```
+
+`~/dir` 表示主目录中的某个子目录，其中 `dir` 是主目录中的子目录名。
+
+```bash
+# 进入 /home/me/foo 目录
+$ cd ~/foo
+```
+
+`~user` 会扩展为指定用户的主目录：
+
+```bash
+$ echo ~foo
+/home/foo
+
+$ echo ~root
+/root
+```
+
+如果 `~user` 后的用户名不存在，波浪线扩展不会生效，仍然显示原输入内容：
+
+```bash
+$ echo ~nonExistedUser
+~nonExistedUser
+```
+
+`~+` 会扩展为当前所在的目录，等同于 `pwd` 命令的结果：
+
+```bash
+$ cd ~/foo
+$ echo ~+
+/home/me/foo
+```
+
+### ?扩展
+`?` 字符在 Bash 中用于文件路径扩展，表示任意单个字符，不包括空字符。
+
+#### 示例
+
+```bash
+# 存在文件 a.txt 和 b.txt
+$ ls ?.txt
+a.txt b.txt
+```
+
+在这个例子中，`?` 代表单个字符，所以会匹配 `a.txt` 和 `b.txt`。
+
+如果要匹配多个字符，可以使用多个 `?` 连用。
+
+```bash
+# 存在文件 a.txt、b.txt 和 ab.txt
+$ ls ??.txt
+ab.txt
+```
+
+在这个例子中，`??` 匹配两个字符，因此 `ab.txt` 被匹配。
+
+#### 文件名扩展
+
+`?` 字符扩展是文件名扩展的一部分，只有在匹配的文件实际存在时才会生效。如果没有匹配到文件，扩展不会发生。
+
+```bash
+# 当前目录有 a.txt 文件
+$ echo ?.txt
+a.txt
+
+# 当前目录为空目录
+$ echo ?.txt
+?.txt
+```
+
+在这个例子中，如果 `?.txt` 匹配到文件名，`echo` 会输出扩展后的文件名；如果没有匹配到文件，`echo` 会原样输出 `?.txt`。
+
+### \* 扩展
+
+`*` 字符在 Bash 中用于文件路径扩展，表示任意数量的任意字符，包括零个字符。
+
+#### 示例
+
+```bash
+# 存在文件 a.txt、b.txt 和 ab.txt
+$ ls *.txt
+a.txt b.txt ab.txt
+```
+
+在这个例子中，`*.txt` 匹配所有以 `.txt` 结尾的文件。
+
+如果想输出当前目录的所有文件，直接使用 `*`：
+
+```bash
+$ ls *
+```
+
+#### 匹配空字符
+
+`*` 可以匹配零个或多个字符：
+
+```bash
+# 存在文件 a.txt 和 ab.txt
+$ ls a*.txt
+a.txt ab.txt
+```
+
+```bash
+# 存在文件 b.txt 和 ab.txt
+$ ls *b*
+b.txt ab.txt
+```
+
+#### 隐藏文件匹配
+
+`*` 不会匹配隐藏文件（以 `.` 开头的文件），例如：
+
+```bash
+$ ls *
+```
+
+如果要匹配隐藏文件，需要使用 `.*`：
+
+```bash
+# 显示所有隐藏文件
+$ echo .*
+```
+
+要排除 `.` 和 `..` 这两个特殊的隐藏文件，可以使用以下表达式：
+
+```bash
+$ echo .[!.]*
+```
+
+#### 文件存在条件
+
+与 `?` 字符扩展一样，`*` 字符扩展只有在匹配的文件存在时才会生效。如果没有匹配到文件，扩展不会发生：
+
+```bash
+# 当前目录不存在 c 开头的文件
+$ echo c*.txt
+c*.txt
+```
+
+在这个例子中，由于目录中没有 `c` 开头的文件，`c*.txt` 会原样输出。
+
+#### 目录匹配
+
+`*` 只匹配当前目录中的文件，不会匹配子目录中的文件：
+
+```bash
+# 子目录有 a.txt 文件
+# 无效写法
+$ ls *.txt
+
+# 有效写法
+$ ls */*.txt
+```
+
+如果需要匹配多层子目录中的文件，可以使用 `*/*.txt`。对于多层子目录，需要使用相应数量的 `*` 级别。
+
+#### Bash 4.0 中的 `globstar`
+
+Bash 4.0 引入了 `globstar` 参数，当启用时，`**` 可以匹配零个或多个子目录。例如：
+
+```bash
+# 匹配顶层和任意深度子目录中的所有文本文件
+$ ls **/*.txt
+```
+
+`globstar` 允许 `**/*.txt` 匹配顶层目录和任意深度子目录中的 `.txt` 文件。更多内容可以参考 `shopt` 命令的详细介绍。
+
+### 方括号扩展
+
+[start-end] 扩展
+
+方括号扩展有一个简写形式[start-end]，表示匹配一个连续的范围。比如，[a-c]等同于[abc]，[0-9]匹配[0123456789]。
+
+```
+# 存在文件 a.txt、b.txt 和 c.txt
+$ ls [a-c].txt
+a.txt
+b.txt
+c.txt
+
+# 存在文件 report1.txt、report2.txt 和 report3.txt
+$ ls report[0-9].txt
+report1.txt
+report2.txt
+report3.txt
+```
+
+下面是一些常用简写的例子。
+
+```
+    [a-z]：所有小写字母。
+    [a-zA-Z]：所有小写字母与大写字母。
+    [a-zA-Z0-9]：所有小写字母、大写字母与数字。
+    [abc]*：所有以a、b、c字符之一开头的文件名。
+    program.[co]：文件program.c与文件program.o。
+    BACKUP.[0-9][0-9][0-9]：所有以BACKUP.开头，后面是三个数字的文件名。
+```
+
+这种简写形式有一个否定形式[!start-end]，表示匹配不属于这个范围的字符。比如，[!a-zA-Z]表示匹配非英文字母的字符。
+
+$ ls report[!1–3].txt
+report4.txt report5.txt
+
+上面代码中，[!1-3]表示排除1、2和3。
+
+### 大括号扩展
+
+大括号扩展 `{...}` 用于生成一系列的值，括号内的值用逗号分隔。它会扩展为括号内的每一个值，无论对应的文件是否存在。
+
+#### 示例
+
+```bash
+$ echo {1,2,3}
+1 2 3
+
+$ echo d{a,e,i,u,o}g
+dag deg dig dug dog
+
+$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+```
+
+注意，大括号扩展与文件名扩展不同，它会生成所有给定的值，而不考虑是否存在相应的文件：
+
+```bash
+$ ls {a,b,c}.txt
+ls: 无法访问'a.txt': 没有那个文件或目录
+ls: 无法访问'b.txt': 没有那个文件或目录
+ls: 无法访问'c.txt': 没有那个文件或目录
+```
+
+#### 注意事项
+
+- **逗号前后不能有空格**。如果有空格，大括号扩展将失效：
+
+  ```bash
+  $ echo {1 , 2}
+  {1 , 2}
+  ```
+
+- 逗号前可以没有值，表示扩展的第一项为空：
+
+  ```bash
+  $ cp a.log{,.bak}
+  # 等同于
+  $ cp a.log a.log.bak
+  ```
+
+#### 嵌套大括号扩展
+
+大括号可以嵌套使用：
+
+```bash
+$ echo {j{p,pe}g,png}
+jpg jpeg png
+
+$ echo a{A{1,2},B{3,4}}b
+aA1b aA2b aB3b aB4b
+```
+
+#### 与其他模式联用
+
+大括号扩展可以与其他模式（如 `*`）联用，并且优先于其他模式扩展：
+
+```bash
+$ echo /bin/{cat,b*}
+/bin/cat /bin/b2sum /bin/base32 /bin/base64 ... ...
+```
+
+该命令等同于：
+
+```bash
+$ echo /bin/cat; echo /bin/b*
+```
+
+#### 多字符扩展
+
+大括号扩展支持多字符模式，而方括号扩展 `[abc]` 只能匹配单个字符：
+
+```bash
+$ echo {cat,dog}
+cat dog
+```
+
+#### 文件存在性区别
+
+大括号扩展始终会扩展，而方括号扩展仅在文件存在时扩展：
+
+```bash
+# 不存在 a.txt 和 b.txt
+$ echo [ab].txt
+[ab].txt
+
+$ echo {a,b}.txt
+a.txt b.txt
+```
+
+在这个例子中，如果文件 `a.txt` 和 `b.txt` 不存在，方括号扩展 `[ab].txt` 不会展开，而大括号扩展 `{a,b}.txt` 依然会生成 `a.txt` 和 `b.txt`。
+
+### {start..end} 扩展
+
+大括号扩展的简写形式 `{start..end}` 表示生成一个连续的序列。该序列可以是字母或数字。
+
+#### 示例
+
+```bash
+$ echo {a..c}
+a b c
+
+$ echo d{a..d}g
+dag dbg dcg ddg
+
+$ echo {1..4}
+1 2 3 4
+
+$ echo Number_{1..5}
+Number_1 Number_2 Number_3 Number_4 Number_5
+```
+
+#### 支持逆序
+
+该扩展还支持逆序生成：
+
+```bash
+$ echo {c..a}
+c b a
+
+$ echo {5..1}
+5 4 3 2 1
+```
+
+#### 无法理解的简写
+
+当 Bash 无法理解某种简写时，它将原样输出：
+
+```bash
+$ echo {a1..3c}
+{a1..3c}
+```
+
+#### 嵌套扩展
+
+简写形式支持嵌套使用：
+
+```bash
+$ echo .{mp{3..4},m4{a,b,p,v}}
+.mp3 .mp4 .m4a .m4b .m4p .m4v
+```
+
+#### 新建目录
+
+大括号扩展的一个常见用途是新建一系列目录：
+
+```bash
+$ mkdir {2007..2009}-{01..12}
+```
+
+这条命令会新建 36 个子目录，格式为“年份-月份”。
+
+#### 用于循环
+
+在 `for` 循环中也常用大括号扩展：
+
+```bash
+for i in {1..4}
+do
+  echo $i
+done
+```
+
+这个循环会执行 4 次，输出 `1` 到 `4`。
+
+#### 前导零
+
+如果起始数字有前导零，输出的每一项都会保留前导零：
+
+```bash
+$ echo {01..5}
+01 02 03 04 05
+
+$ echo {001..5}
+001 002 003 004 005
+```
+
+#### 步长指定
+
+可以使用第二个双点号 `{start..end..step}` 来指定步长：
+
+```bash
+$ echo {0..8..2}
+0 2 4 6 8
+```
+
+在这个例子中，数字从 0 递增到 8，每次增加 2。
+
+#### 连用扩展
+
+多个简写形式连用时，会有循环处理效果：
+
+```bash
+$ echo {a..c}{1..3}
+a1 a2 a3 b1 b2 b3 c1 c2 c3
+```
+
+这会生成所有可能的组合结果。
+
+
+Bash 中的变量扩展、子命令扩展、算术扩展和字符类扩展都是常见的扩展操作，以下是详细介绍：
+
+### 变量扩展
+
+使用 `$` 符号来引用变量，Bash 会将其扩展为变量的值：
+
+```bash
+$ echo $SHELL
+/bin/bash
+```
+
+变量也可以使用 `${}` 进行引用：
+
+```bash
+$ echo ${SHELL}
+/bin/bash
+```
+
+使用 `${!string*}` 或 `${!string@}` 可以返回所有匹配指定前缀的变量名：
+
+```bash
+$ echo ${!S*}
+SECONDS SHELL SHELLOPTS SHLVL SSH_AGENT_PID SSH_AUTH_SOCK
+```
+
+### 子命令扩展
+
+子命令扩展使用 `$(...)` 语法，可以将另一个命令的运行结果作为返回值：
+
+```bash
+$ echo $(date)
+Tue Jan 28 00:01:13 CST 2020
+```
+
+另一种较老的语法是使用反引号 `` `...` ``：
+
+```bash
+$ echo `date`
+Tue Jan 28 00:01:13 CST 2020
+```
+
+子命令扩展支持嵌套，例如：
+
+```bash
+$ echo $(ls $(pwd))
+```
+
+### 算术扩展
+
+使用 `((...))` 进行整数运算，并返回结果：
+
+```bash
+$ echo $((2 + 2))
+4
+```
+
+### 字符类扩展
+
+字符类 `[[:class:]]` 用于匹配特定类型的字符。常用字符类如下：
+
+- `[[:alnum:]]`：字母或数字
+- `[[:alpha:]]`：字母
+- `[[:blank:]]`：空格和 Tab
+- `[[:cntrl:]]`：控制字符（ASCII 码 0-31）
+- `[[:digit:]]`：数字
+- `[[:graph:]]`：可打印字符（不含空格）
+- `[[:lower:]]`：小写字母
+- `[[:print:]]`：可打印字符（含空格）
+- `[[:punct:]]`：标点符号
+- `[[:space:]]`：空白字符
+- `[[:upper:]]`：大写字母
+- `[[:xdigit:]]`：十六进制字符
+
+例如，列出所有以大写字母开头的文件：
+
+```bash
+$ echo [[:upper:]]*
+```
+
+字符类可以通过加 `!` 或 `^` 来表示否定：
+
+```bash
+$ echo [![:digit:]]*
+```
+
+#### 使用注意点
+
+1. **通配符先解释再执行**  
+   Bash 会先扩展通配符，然后执行命令：
+
+   ```bash
+   $ ls a*.txt
+   ab.txt
+   ```
+
+2. **文件名扩展原样输出**  
+   如果没有匹配的文件，通配符原样输出：
+
+   ```bash
+   $ echo r*
+   r*
+   ```
+
+3. **通配符仅匹配单层路径**  
+   `*` 和 `?` 只能匹配当前目录的文件，无法匹配子目录。如果要匹配子目录中的文件，可以使用 `*/`：
+
+   ```bash
+   $ ls */*.txt
+   ```
+
+4. **文件名中使用通配符**  
+   如果文件名中包含通配符，需要使用引号引起来：
+
+   ```bash
+   $ touch 'fo*'
+   $ ls
+   fo*
+   ```
+
+这些扩展功能帮助你灵活操作 Bash 命令和文件路径。
+
+### 量词语法
+
+Bash 中的量词语法用来控制模式匹配的次数，但需要 `extglob` 参数开启。一般情况下，`extglob` 是默认打开的，你可以使用以下命令来检查或开启它：
+
+```bash
+$ shopt extglob
+extglob         on
+
+$ shopt -s extglob  # 开启 extglob
+```
+
+### 量词语法
+
+- `?(pattern-list)`：匹配零次或一次模式。
+- `*(pattern-list)`：匹配零次或多次模式。
+- `+(pattern-list)`：匹配一次或多次模式。
+- `@(pattern-list)`：只匹配一次模式。
+- `!(pattern-list)`：匹配给定模式以外的任何内容。
+
+#### 示例
+
+```bash
+$ ls abc?(.)txt
+abctxt abc.txt
+```
+`?(.)` 匹配零个或一个点。
+
+```bash
+$ ls abc?(def)
+abc abcdef
+```
+`?(def)` 匹配零个或一个 `def`。
+
+```bash
+$ ls abc@(.txt|.php)
+abc.php abc.txt
+```
+`@(.txt|.php)` 只匹配 `.txt` 或 `.php` 后缀的文件。
+
+```bash
+$ ls abc+(.txt)
+abc.txt abc.txt.txt
+```
+`+(.txt)` 匹配一个或多个 `.txt`。
+
+```bash
+$ ls a!(b).txt
+a.txt abb.txt ac.txt
+```
+`!(b)` 匹配非 `b` 的内容。
+
+#### `shopt` 命令
+
+`shopt` 命令可以控制 Bash 的一些行为，特别是通配符扩展相关的参数：
+
+- `dotglob`：匹配包括隐藏文件（以 `.` 开头的文件）。
+
+  ```bash
+  $ shopt -s dotglob
+  $ ls *
+  abc.txt .config
+  ```
+
+- `nullglob`：当没有匹配文件时，通配符返回空字符串。
+
+  ```bash
+  $ shopt -s nullglob
+  $ rm b*  # 如果没有 b* 匹配的文件，rm 不会报错。
+  ```
+
+- `failglob`：当没有匹配文件时，直接报错。
+
+  ```bash
+  $ shopt -s failglob
+  $ rm b*  # 如果没有匹配文件，Bash 会直接报错。
+  bash: 无匹配: b*
+  ```
+
+- `extglob`：支持扩展的通配符语法（如量词语法），默认开启。
+
+  ```bash
+  $ shopt -s extglob
+  ```
+
+- `nocaseglob`：通配符扩展不区分大小写。
+
+  ```bash
+  $ shopt -s nocaseglob
+  $ ls /windows/program*
+  /windows/ProgramData /windows/Program Files /windows/Program Files (x86)
+  ```
+
+- `globstar`：允许 `**` 匹配零个或多个子目录。默认关闭。
+
+  假设有如下文件结构：
+
+  ```bash
+  a.txt
+  sub1/b.txt
+  sub1/sub2/c.txt
+  ```
+
+  默认情况下，你需要分层写出通配符来匹配子目录：
+
+  ```bash
+  $ ls *.txt */*.txt */*/*.txt
+  ```
+
+  开启 `globstar` 后，`**/*.txt` 可以匹配所有子目录中的 `.txt` 文件：
+
+  ```bash
+  $ shopt -s globstar
+  $ ls **/*.txt
+  a.txt  sub1/b.txt  sub1/sub2/c.txt
+  ```
+
+通过这些选项，Bash 的通配符扩展可以变得更加灵活和强大，满足各种复杂文件匹配的需求。
+
+
+
+
 
 
 
