@@ -1,0 +1,62 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site – Examples</title>
+    <link>http://localhost:1313/docs/coding/examples/</link>
+    <description>Recent content in Examples on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Sep 2024 11:48:17 +0200</lastBuildDate>
+    
+	  <atom:link href="http://localhost:1313/docs/coding/examples/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Estimating Building Heights</title>
+      <link>http://localhost:1313/docs/coding/examples/estimating-building-heights/</link>
+      <pubDate>Sat, 28 Sep 2024 11:48:22 +0200</pubDate>
+      
+      <guid>http://localhost:1313/docs/coding/examples/estimating-building-heights/</guid>
+      <description>
+        
+        
+        &lt;h1&gt;使用数字高程模型（DEMs）和OpenStreetMap数据估算建筑物高度&lt;/h1&gt;&lt;h2&gt;目标：&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;目标&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#%e7%9b%ae%e6%a0%87&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在本次作业中，您将利用数字高程模型（DEMs）和来自OpenStreetMap（OSM）的建筑物轮廓数据，估算荷兰瓦赫宁根市建筑物的高度。目标是开发一个简单的城市环境三维（3D）模型，这对于城市规划、噪声传播估算、太阳能分析和阴影分析等应用至关重要。&lt;/p&gt;
+&lt;h2&gt;背景：&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;背景&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#%e8%83%8c%e6%99%af&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;建筑物的三维建模在城市规划、基础设施开发和环境影响评估等各种城市应用中变得越来越重要。拥有可靠的建筑物高度信息使城市规划者能够精确评估新开发项目对周边区域的影响，例如其对风模式、阴影投射和城市整体美观的影响。这些分析不仅对于确保城市可持续增长至关重要，而且对于优化建筑物和公共空间的能源效率也非常关键。最终，这些努力有助于通过创造更宜居、有韧性且规划良好的城市环境来提升居民的生活质量。&lt;/p&gt;
+&lt;p&gt;然而，关于建筑物第三维度（即高度）的信息往往有限。尽管OpenStreetMap提供了广泛的建筑物轮廓数据，但其中标注了高度信息的建筑物不足3%（Sun, 2021）。因此，唯一可行的大规模估算建筑物高度的方法是通过遥感数据。&lt;/p&gt;
+&lt;p&gt;一种有效的确定建筑物高度的方法是使用冠层高度模型（CHM）。CHM计算了地面与物体（如建筑物和树木）顶部之间的垂直距离。要生成CHM，需要将捕捉裸地高程的数字地形模型（DTM）与包含地表所有特征的高程的数字表面模型（DSM）进行相减。&lt;/p&gt;
+&lt;h2&gt;作业说明：&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;作业说明&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#%e4%bd%9c%e4%b8%9a%e8%af%b4%e6%98%8e&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;数据收集：
+&lt;ul&gt;
+&lt;li&gt;DTM数据：使用以下链接下载所选区域的数字地形模型（DTM）数据：https://service.pdok.nl/rws/ahn/atom/dtm_05m.xml。使用以下图块：Kaartblad M_39FZ1, M_39FZ2, M_39FN1, M_39FN2。&lt;/li&gt;
+&lt;li&gt;DSM数据：使用以下链接下载数字表面模型（DSM）数据：https://service.pdok.nl/rws/ahn/atom/dsm_05m.xml。使用以下图块：Kaartblad R_39FZ1, R_39FZ2, R_39FN1, R_39FN2。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;数据处理：
+&lt;ul&gt;
+&lt;li&gt;CHM创建：编写一个Python函数，通过将DTM从DSM中相减来生成冠层高度模型（CHM）。确保您的函数能够处理多个图块，并将它们整合为研究区域的单一CHM。&lt;/li&gt;
+&lt;li&gt;建筑高度提取：使用OpenStreetMap的建筑物轮廓数据，提取覆盖建筑物轮廓的CHM数据。这将为您提供估算的建筑高度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输出：
+&lt;ul&gt;
+&lt;li&gt;生成一个表示瓦赫宁根选定区域建筑高度的栅格数据集。&lt;/li&gt;
+&lt;li&gt;建筑高度比较：正如引言中所述，OpenStreetMap只为有限数量的建筑物提供了高度数据。使用提取的CHM数据，并与OpenStreetMap提供的建筑高度进行比较。&lt;/li&gt;
+&lt;li&gt;提交一份报告，详细说明您的方法，包括遇到的挑战以及如何解决这些挑战。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;参考文献:&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;参考文献&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Sun, Yao (2021), Large-scale LoD1 Building Model Reconstruction from a Single SAR Image. Doctoral thesis. URL: &lt;a href=&#34;https://elib.dlr.de/187104/2/1615447.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://elib.dlr.de/187104/2/1615447.pdf&lt;/a&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
