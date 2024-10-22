@@ -1,0 +1,19 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site – Context</title>
+    <link>http://localhost:1313/docs/gis/context/</link>
+    <description>Recent content in Context on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Oct 2024 23:33:45 +0800</lastBuildDate>
+    
+	  <atom:link href="http://localhost:1313/docs/gis/context/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+  </channel>
+</rss>
