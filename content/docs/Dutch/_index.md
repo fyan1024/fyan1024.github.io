@@ -69,6 +69,87 @@ draft = false
 - **逐步积累**：不必急于掌握所有发音，可从基本的元音和简单组合开始，然后逐渐加入复杂的字母组合。
 
 
+在荷兰语中，掌握基础句型是进行日常沟通的核心，尤其是简单的陈述句和疑问句。以下是对荷兰语基础句型的介绍，包括常见的句子结构和实际使用示例。
+
+##### 一、陈述句（Declarative Sentences）
+
+荷兰语的陈述句结构类似于英语，通常按照“主语+动词+其他成分”的顺序进行排列。陈述句用于表达事实、描述情况等，是最常用的句子类型。
+
+###### 1. 陈述句结构
+- **基本结构**：主语 + 谓语动词 + 其他成分
+- **例句**：
+  - **Ik ben student.**（我是学生。）  
+    - 解析：主语“ik”（我）+ 谓语动词“ben”（是）+ 其他成分“student”（学生）。
+  - **Zij woont in Nederland.**（她住在荷兰。）  
+    - 解析：主语“zij”（她）+ 谓语动词“woont”（居住）+ 其他成分“in Nederland”（在荷兰）。
+
+###### 2. 否定陈述句
+荷兰语的否定一般使用“niet”（不）或“geen”（没有），位置因句子结构不同而变化。
+- **使用“niet”**：用于否定动词、形容词或地点。
+  - **Ik woon niet in Amsterdam.**（我不住在阿姆斯特丹。）
+- **使用“geen”**：用于否定名词，表示“没有”。
+  - **Ik heb geen auto.**（我没有车。）
+
+##### 二、简单疑问句（Interrogative Sentences）
+
+疑问句用于提出问题。荷兰语的疑问句构造有几种方式，包括动词前置法和使用疑问词。
+
+###### 1. 动词前置法（Inversion）
+将动词置于句首，将陈述句变为疑问句，适合回答“是/否”问题。
+- **结构**：动词 + 主语 + 其他成分
+- **例句**：
+  - **Ben jij student?**（你是学生吗？）  
+    - 解析：动词“ben”（是）+ 主语“jij”（你）+ 其他成分“student”（学生）。
+  - **Woon jij in Nederland?**（你住在荷兰吗？）  
+    - 解析：动词“woon”（住）+ 主语“jij”（你）+ 其他成分“in Nederland”（在荷兰）。
+
+###### 2. 疑问词引导（WH-Questions）
+疑问词用于提出开放性问题，可以获得更多详细信息。荷兰语中的常用疑问词有“wie”（谁）、“wat”（什么）、“waar”（哪里）、“hoe”（怎样）等。
+
+- **结构**：疑问词 + 动词 + 主语 + 其他成分
+- **常用疑问词**：
+  - **Wie**：谁  
+    - **Wie ben jij?**（你是谁？）
+  - **Wat**：什么  
+    - **Wat doe je?**（你在做什么？）
+  - **Waar**：哪里  
+    - **Waar woon je?**（你住在哪里？）
+  - **Hoe**：怎样  
+    - **Hoe gaat het?**（你好吗？）
+
+###### 3. 选择疑问句
+选择疑问句用于在两个或多个选项之间进行选择，通常使用“of”（或）。
+- **例句**：
+  - **Wil je koffie of thee?**（你想要咖啡还是茶？）
+
+##### 三、常见的问答对话示例
+
+###### 例1：简单自我介绍
+- **问**：Hoe heet jij?（你叫什么名字？）
+- **答**：Ik heet [名字].（我叫[名字]。）
+
+###### 例2：日常问候
+- **问**：Hoe gaat het met jou?（你好吗？）
+- **答**：Goed, dank je. En met jou?（很好，谢谢。你呢？）
+
+###### 例3：询问居住地点
+- **问**：Waar woon je?（你住在哪里？）
+- **答**：Ik woon in Amsterdam.（我住在阿姆斯特丹。）
+
+##### 四、练习方法
+
+- **造句练习**：使用简单的主谓结构自我介绍、描述自己或他人，例如“我喜欢…”、“他是…”、“她住在…”等。
+- **日常对话**：使用简单疑问句询问对方信息，如姓名、居住地、职业等，练习提问和回答。
+- **否定练习**：尝试将陈述句变为否定句，熟悉“niet”和“geen”的用法。
+
+[Building_a_Sentence.htm](http://www.valley-trail.com/Building_a_Sentence.htm)
+[Dutch_Course_1.htm](http://www.valley-trail.com/Dutch_Course_1.htm)
+[Dutch_Course_1_Part_2.htm](http://www.valley-trail.com/Dutch_Course_1_Part_2.htm)
+[Dutch_Course_1_Part_3.htm](http://www.valley-trail.com/Dutch_Course_1_Part_3.htm)
+[word-order-in-a-nutshell](https://thedutchonlineacademy.com/en/grammar/word-order-in-a-nutshell)
+[asking-questions](https://thedutchonlineacademy.com/en/grammar/asking-questions)
+
+
 
 #### 第2天：自我介绍
 - **词汇**：个人信息（如"naam"（名字）、"leeftijd"（年龄）、"land"（国家）等）
