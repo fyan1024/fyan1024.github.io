@@ -60,6 +60,41 @@ draft = false
 9. **sch**：/sx/ 或 /skh/，发“skh”的喉音组合，如“school”（学校）。
 10. **ch**：/x/，发“kh”的喉音音，如“licht”（光）。
 
+#### 荷兰语字母不同发音示例及示例词汇
+
+| 字母 | 发音 | 示例词汇 | 说明 |
+|------|------|----------|------|
+| A    | /ɑ/ | appel（苹果）、kat（猫） | 短音，类似英语“cat”中的a |
+|      | /aː/ | vader（父亲）、maan（月亮） | 长音，类似英语“car”中的a |
+| C    | /seː/ | centrum（中心）、cirkel（圆圈） | 类似英语中city中的c，用在“e, i, y”前 |
+|      | /k/ | café（咖啡馆）、code（代码） | 类似英语中的k，用在其他情况下 |
+| E    | /e/ | pet（帽子）、bed（床） | 短音，类似英语“pet”中的e |
+|      | /ɛː/ | eten（吃）、mee（一起） | 长音，类似英语“day”中的a |
+| G    | /ɣ/ | goed（好）、groot（大） | 喉音，常见于南部和弗拉芒语 |
+|      | /x/ | licht（光）、gracht（运河） | 强烈的喉音，常见于北部方言 |
+| I    | /i/ | hier（这里）、fiets（自行车） | 长音，类似英语“machine”中的i |
+|      | /ɪ/ | vis（鱼）、ik（我） | 短音，类似英语“sit”中的i |
+| O    | /oː/ | boom（树）、groot（大） | 长音，类似英语“more”中的o |
+|      | /ɔ/ | bos（森林）、kop（头） | 短音，类似英语“not”中的o |
+| U    | /y/ | uur（小时）、nu（现在） | 类似法语中的“u”发音，发“ü”音 |
+|      | /ʏ/ | put（井）、brug（桥） | 短音，没有直接的英语对应音 |
+| Y    | /ɛi/ | tijd（时间）、prijs（价格） | 类似英语“night”中的“ai”，常见于“ij”形式 |
+|      | /iː/ | typisch（典型的）、type（类型） | 类似英语“machine”中的i，用于外来词和特定拼写 |
+
+#### 荷兰语字母组合不同发音示例
+
+| 字母组合 | 发音 | 示例词汇 | 说明 |
+|----------|------|----------|------|
+| **aa** | /aː/ | vaak（经常）、taal（语言） | 长音，类似英语“car”中的a |
+| **ee** | /eː/ | feest（派对）、zeven（七） | 长音，类似英语“day”中的ay |
+| **oo** | /oː/ | boom（树）、schoon（干净） | 长音，类似英语“more”中的o |
+| **ij/ei** | /ɛi/ | mijn（我的）、trein（火车） | 类似英语“night”中的ai音 |
+| **ou/au** | /ʌu/ | oud（老的）、goud（金） | 类似英语“house”中的ou音 |
+| **ui** | /œy/ | huis（房子）、bruin（棕色） | 无直接英语对应，独特发音，介于“ou”和“ee”之间 |
+| **oe** | /u/ | boek（书）、stoel（椅子） | 类似英语“boot”中的oo音 |
+| **sch** | /sx/ 或 /skh/ | school（学校）、schip（船） | 发“skh”的喉音组合 |
+| **ch** | /x/ | licht（光）、toch（然而） | 喉音，类似于苏格兰口音的loch |
+
 ##### 发音练习建议
 
 为了掌握这些发音，可以参考以下练习方法：
@@ -67,7 +102,6 @@ draft = false
 - **跟读与模仿**：利用YouTube上的荷兰语发音视频或荷兰语学习应用，找到每个字母和组合发音的示例，进行跟读和模仿。
 - **录音与对比**：录下自己跟读的声音，和原音进行对比，尤其注意“g”、“j”、“sch”等特殊发音的区别。
 - **逐步积累**：不必急于掌握所有发音，可从基本的元音和简单组合开始，然后逐渐加入复杂的字母组合。
-
 
 在荷兰语中，掌握基础句型是进行日常沟通的核心，尤其是简单的陈述句和疑问句。以下是对荷兰语基础句型的介绍，包括常见的句子结构和实际使用示例。
 
@@ -149,13 +183,13 @@ draft = false
 [word-order-in-a-nutshell](https://thedutchonlineacademy.com/en/grammar/word-order-in-a-nutshell)
 [asking-questions](https://thedutchonlineacademy.com/en/grammar/asking-questions)
 
-
-
 #### 第2天：自我介绍
 - **词汇**：个人信息（如"naam"（名字）、"leeftijd"（年龄）、"land"（国家）等）
 - **语法**：人称代词（如“我”、“你”、“他/她”）
 - **句型**："Ik heet [名字]"（我叫...）"Ik kom uit [国家]"（我来自...）
 - **练习**：自我介绍，尝试不同的问答组合。
+
+[introduce-yourself-in-dutch](https://www.linguajunkie.com/dutch/introduce-yourself-in-dutch)
 
 #### 第3天：家庭成员
 - **词汇**：家庭成员（如“vader”（父亲）、“moeder”（母亲）、“broer”（兄弟）等）
