@@ -149,3 +149,181 @@ Map.addLayer(ndvi, ndvi_viz, "S2 NDVI Durban 2019-04-24");
 Map.addLayer(image, rgb_viz, "S2 RGB Durban 2019-04-24");
 ```
 
+```javascript
+// 定义感兴趣区域（AOI）
+var area_of_interest = 
+    ee.Geometry.Polygon(
+        [[[28.729885014656357, 41.002061784123136],
+          [28.729885014656357, 40.718516594111634],
+          [29.194057377937607, 40.718516594111634],
+          [29.194057377937607, 41.002061784123136]]], null, false);
+
+// 将 AOI 添加到地图上
+Map.addLayer(area_of_interest, {}, "AOI");
+
+// 定义可视化调色板
+var magma = ["400b0b","a12424","ee7b06","ffa904","ffdb00"];  // magma 调色板
+var viridis = ["450256","3B1C8C","21908D","5AC865","F9E721"];  // viridis 调色板
+
+// 定义可视化参数
+var fdi_viz = {"opacity":1,"bands":["fdi"],"min":0,"max":0.1,"palette":magma};  // FDI 可视化参数
+var fai_viz = {"opacity":1,"bands":["fai"],"min":0,"max":0.1,"palette":magma};  // FAI 可视化参数
+var viz_rgb = {"opacity":1,"bands":["B4","B3","B2"],"min":422.7282480252592,"max":917.2016396151902,"gamma":1};  // RGB 可视化参数
+var ndvi_viz = {"opacity":1,"bands":["ndvi"],"min":-.4,"max":0.4,"palette":viridis};  // NDVI 可视化参数
+var ndci_viz = {"opacity":1,"bands":["ndci"],"min":-.2,"max":0.2,"palette":viridis};  // NDCI 可视化参数
+
+// 加载单幅 Sentinel-2 影像
+var image = ee.Image("COPERNICUS/S2_SR/20210519T084601_20210519T084711_T35TPF");
+
+// 定义计算 FDI 的函数
+var calculate_fdi = function(image) {
+  // nir-red / swir-red * 10 = 1.7722052470761769
+  var correction = (832.8 - 664.6) / (1613.7 - 664.6) * 10;
+
+  return image.expression(
+      'NIR - (RE2 + (SWIR - RE2) * 1.7722052470761769)', {
+      'RED': image.select('B4').divide(10000),  // 红光波段
+      'RE2': image.select('B6').divide(10000),  // 红边波段
+      'NIR': image.select('B8').divide(10000),  // 近红外波段
+      'SWIR': image.select('B11').divide(10000) // 短波红外波段
+  }).select(['B8'], ['fdi']);  // 重命名为 fdi
+};
+
+// 定义计算 FAI 的函数
+var calculate_fai = function(image) {
+  // nir-red / swir-red * 10 = 1.7722052470761769
+  var correction = (832.8 - 664.6) / (1613.7 - 664.6) * 10;
+
+  return image.expression(
+      'NIR - (RED + (SWIR - RED) * 1.7722052470761769)', {
+      'RED': image.select('B4').divide(10000),  // 红光波段
+      'NIR': image.select('B8').divide(10000),  // 近红外波段
+      'SWIR': image.select('B11').divide(10000) // 短波红外波段
+  }).select(['B8'], ['fai']);  // 重命名为 fai
+};
+
+// 定义计算 NDVI 的函数
+var calculate_ndvi = function(image) {
+  return image.expression(
+      '(NIR - RED) / (NIR + RED)', {
+      'RED': image.select('B4').divide(10000),  // 红光波段
+      'NIR': image.select('B8').divide(10000)  // 近红外波段
+  }).select(['B8'], ['ndvi']);  // 重命名为 ndvi
+};
+
+// 定义计算 NDCI 的函数
+var calculate_ndci = function(image) {
+  return image.expression(
+      '(RE - RED) / (RE + RED)', {
+      'RED': image.select('B4').divide(10000),  // 红光波段
+      'RE': image.select('B5').divide(10000)  // 红边波段
+  }).select(['B5'], ['ndci']);  // 重命名为 ndci
+};
+
+// 加载单幅 Sentinel-2 影像
+var image = ee.Image("COPERNICUS/S2_SR/20210519T084601_20210519T084711_T35TPF");
+
+// 创建水体掩膜（SCL 波段值为 6 表示水体）
+var waterMask = image.select('SCL').eq(6);  // 水体掩膜
+var image = image.updateMask(waterMask);  // 应用水体掩膜
+
+// 计算光谱指数
+var ndvi = calculate_ndvi(image);  // 计算 NDVI
+var fdi = calculate_fdi(image);    // 计算 FDI
+var ndci = calculate_ndci(image);  // 计算 NDCI
+var fai = calculate_fai(image);    // 计算 FAI
+
+// 将地图中心设置为影像范围
+Map.centerObject(image);
+
+// 将影像和光谱指数添加到地图上
+Map.addLayer(image, viz_rgb, "rgb");  // 添加 RGB 影像
+Map.addLayer(fdi, fdi_viz, "fdi");    // 添加 FDI
+Map.addLayer(ndvi, ndvi_viz, "ndvi"); // 添加 NDVI
+Map.addLayer(ndci, ndci_viz, "ndci"); // 添加 NDCI
+Map.addLayer(fai, fai_viz, "fai");    // 添加 FAI
+
+// 定义阈值并创建分类掩膜
+var threshold = 0.1;  // 定义阈值
+var cls = fdi.gt(threshold);  // 创建二进制分类掩膜（1 = 海鼻涕，0 = 非海鼻涕）
+Map.addLayer(cls);  // 将分类结果添加到地图上
+
+// 计算分类掩膜的平均值
+var mean_cls = cls.reduce(ee.Reducer.mean());
+print(mean_cls);  // 打印分类掩膜的平均值
+
+// 定义计算 FDI 的函数（与之前相同）
+var calculate_fdi = function(image) {
+  var correction = (832.8 - 664.6) / (1613.7 - 664.6) * 10;
+  return image.expression(
+      'NIR - (RE2 + (SWIR - RE2) * 1.7722052470761769)', {
+      'RED': image.select('B4').divide(10000),
+      'RE2': image.select('B6').divide(10000),
+      'NIR': image.select('B8').divide(10000),
+      'SWIR': image.select('B11').divide(10000)}
+  ).select(['B8'], ['fdi']);
+};
+
+// 定义计算海鼻涕像素数量的函数
+var get_fdi_threshold_pixels = function(image) {
+  var waterMask = image.select('SCL').eq(6);  // 水体掩膜
+  var image = image.updateMask(waterMask);  // 应用水体掩膜
+  var image = image.clip(area_of_interest);  // 裁剪到感兴趣区域
+
+  var fdi = calculate_fdi(image);  // 计算 FDI
+  var cls = fdi.gt(threshold);  // 创建二进制分类掩膜
+
+  // 计算分类掩膜的平均值
+  var meanDict = cls.reduceRegion({
+    reducer: ee.Reducer.mean(),  // 使用平均值 reducer
+    geometry: cls.geometry(),  // 使用影像的几何范围
+    scale: 10,  // 分辨率（10m）
+    maxPixels: 1e9  // 处理大数据集
+  });
+
+  // 返回包含日期和海鼻涕像素比例的 Feature
+  return ee.Feature(null, {
+    'date': image.date().format('YYYY-MM-dd'),  // 影像日期
+    'algae_pixel_fraction': meanDict.get('fdi')  // 海鼻涕像素比例
+  });
+};
+
+// 加载 Sentinel-2 地表反射率数据
+var s2Collection = ee.ImageCollection('COPERNICUS/S2_SR')
+  .filterBounds(area_of_interest)  // 过滤空间范围（AOI）
+  .filterDate('2016-01-01', '2025-01-01')  // 过滤时间范围
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 2));  // 过滤云量低于 2% 的影像
+
+print(s2Collection);  // 打印过滤后的影像集合
+
+// 对每幅影像计算海鼻涕像素比例
+var algaeData = s2Collection.map(get_fdi_threshold_pixels);
+
+// 将结果转换为 FeatureCollection
+var algaeFeatureCollection = ee.FeatureCollection(algaeData);
+
+// 打印结果
+print('Algae Pixel Data:', algaeFeatureCollection);
+
+// 绘制折线图
+var chart = ui.Chart.feature.byFeature({
+  features: algaeFeatureCollection,  // 数据源
+  xProperty: 'date',  // X 轴：日期
+  yProperties: ['algae_pixel_fraction']  // Y 轴：海鼻涕像素比例
+})
+.setChartType('LineChart')  // 折线图
+.setOptions({
+  title: 'Algae Pixel Fraction Over Time',  // 图表标题
+  hAxis: {title: 'Date', format: 'YYYY-MM-dd'},  // X 轴标题和格式
+  vAxis: {title: 'Algae Pixel Fraction'},  // Y 轴标题
+  pointSize: 5,  // 点大小
+  lineWidth: 2,  // 线宽
+  colors: ['#1f78b4']  // 线条颜色
+});
+
+// 将图表添加到 UI
+print(chart);
+```
+
+
+
