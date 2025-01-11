@@ -1,6 +1,6 @@
 baseURL: https://fyan1024.github.io/
 languageCode: en-us
-title: My New Hugo Site
+title: FYan's Note Site
 
 theme: hextra
 
@@ -23,7 +23,7 @@ menu:
       pageRef: /about
       weight: 2
     - name: Contact ↗
-      url: "https://github.com/imfing"
+      url: "https://github.com/fyan1024"
       weight: 3
     - name: Search
       weight: 4
@@ -31,12 +31,12 @@ menu:
         type: search
     - name: GitHub
       weight: 5
-      url: "https://github.com/imfing/hextra-starter-template"
+      url: "https://github.com/fyan1024/fyan1024.github.io"
       params:
         icon: github
     - name: Twitter
       weight: 6
-      url: "https://twitter.com/"
+      url: "https://x.com/Frank_Yan_1024/"
       params:
         icon: x-twitter
 
@@ -51,4 +51,4 @@ params:
 
   editURL:
     enable: true
-    base: "https://github.com/imfing/hextra-starter-template/edit/main/content"
+    base: "https://github.com/fyan1024/fyan1024.github.io/edit/main/content"
