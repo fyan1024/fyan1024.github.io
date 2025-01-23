@@ -68,6 +68,30 @@ Lanžhot森林位于摩拉瓦河和迪耶河交汇处的低地洪泛区，海拔
 建模过程如图2所示，包括在通过神经网络反演方法获取叶绿素含量的随机像素集上训练U-Net模型。这种使用空间稀疏参考数据的训练策略与通常使用密集训练数据的方法形成对比。训练后的U-Net模型用于预测所有剩余像素的叶绿素含量值。我们总共采样了10,000个像素，以捕捉研究区域内森林冠层的多样性特征。其中80%的参考时间序列用于U-Net模型训练，剩余的20%用于模型性能评估。在最后一步中，我们通过将U-Net模型预测的Chl-ab值与2019年和2020年在Lanžhot混合洪泛森林中实地测量的叶片叶绿素含量进行对比，验证了其准确性。假设叶绿素含量在短时间内不会发生显著变化，我们使用叶片采样日期前后7天的时间窗口选择最接近的Sentinel-2影像。这种方法确保了时间对齐的鲁棒性，增强了模型预测与实地测量结果之间比较的可靠性。此外，对Sentinel-2数据应用了光谱滤波器，以剔除时间序列中的任何光谱异常。
 
 
+## 3. RESULTS AND DISCUSSION  
 
+3.1. Field Validation in Lanžhot forest area**  
 
+Our model demonstrated robust performance in capturing the intricate characteristics of forest canopies within the Lanžhot forest. Overall, with all tree sample locations, the Chl-ab predicted from Sentinel-2 imagery using the neural networks and the PROSAIL model showed a strong correlation with in situ chlorophyll measurements taken in the Lanžhot forest (r² = 0.86, Figure 3). The model achieved a Root Mean Squared Error (RMSE) of 5.32 μg cm⁻² and a Mean Absolute Error (MAE) of 4.56 μg cm⁻², indicating high accuracy and reliability in the predicted chlorophyll estimates.  
 
+By tree species, the predicted Chl-ab showed strong correlation with studied leaf chlorophyll samples (r² > 0.87; Table 2). Specifically, the U-Net model achieved the highest accuracy for leaf samples collected over Quercus cerris (RMSE = 3.83 μg cm⁻²; MAE = 3.34 μg cm⁻²), followed by Tilia cordata (MAE = 4.51 μg cm⁻²; RMSE = 4.12 μg cm⁻²) and Carpinus betulus (RMSE = 4.71 μg cm⁻²; MAE = 3.73 μg cm⁻²). These results underscore the robustness of the predictive capabilities in estimating chlorophyll, highlighting the potential of the integrated approach in accurately characterizing forests and their chlorophyll dynamics.  
+
+These findings highlight the potential of integrating deep learning algorithms with RTMs and Sentinel-2 time series for chlorophyll content retrieval. The approach not only reduces processing time but also eliminates bottlenecks associated with extrapolating plant trait inversions from RTMs to satellite images. The proposed method significantly enhances the feasibility of integrating RTMs into near real-time monitoring systems. This integration holds promise to track biochemical effects of biotic (e.g., bark beetle attacks) and abiotic forest disturbances (e.g., drought). By leveraging the synergy of RTMs, deep learning algorithms, and Sentinel-2 imagery, this work addresses the challenges of timely and accurate monitoring in dynamic forest ecosystems.  
+
+**3.1. Lanžhot森林区域的实地验证**  
+
+我们的模型在捕捉Lanžhot森林冠层的复杂特征方面表现出色。总体而言，使用神经网络和PROSAIL模型从Sentinel-2影像中预测的Chl-ab与Lanžhot森林中实地测量的叶绿素含量显示出强相关性（r² = 0.86，图3）。模型的均方根误差（RMSE）为5.32 μg cm⁻²，平均绝对误差（MAE）为4.56 μg cm⁻²，表明预测的叶绿素含量具有较高的准确性和可靠性。  
+
+按树种划分，预测的Chl-ab与研究的叶片叶绿素样本显示出强相关性（r² > 0.87；表2）。具体而言，U-Net模型对土耳其栎（Quercus cerris）叶片样本的预测精度最高（RMSE = 3.83 μg cm⁻²；MAE = 3.34 μg cm⁻²），其次是椴树（Tilia cordata）（MAE = 4.51 μg cm⁻²；RMSE = 4.12 μg cm⁻²）和欧洲鹅耳枥（Carpinus betulus）（RMSE = 4.71 μg cm⁻²；MAE = 3.73 μg cm⁻²）。这些结果强调了模型在估算叶绿素含量方面的稳健性，凸显了该集成方法在准确表征森林及其叶绿素动态方面的潜力。  
+
+这些发现表明，将深度学习算法与辐射传输模型（RTMs）和Sentinel-2时间序列相结合用于叶绿素含量反演具有巨大潜力。该方法不仅减少了处理时间，还消除了从辐射传输模型反演植物性状到卫星影像的外推瓶颈。所提出的方法显著增强了将辐射传输模型集成到近实时监测系统中的可行性。这种集成有望追踪生物性（如树皮甲虫侵袭）和非生物性森林干扰（如干旱）的生化效应。通过利用辐射传输模型、深度学习算法和Sentinel-2影像的协同作用，本研究解决了动态森林生态系统中及时准确监测的挑战。
+
+## 4. CONCLUSIONS  
+
+This study highlights the potential of deep learning models to map forest chlorophyll content continuously at high resolution using inverted chlorophyll-based RTMs and Sentinel-2 multispectral imagery, even when reference data are sparse. The proposed U-Net model demonstrates a great ability to capture intricate spatial patterns in chlorophyll content in the forest in our study area, suggesting that robust chlorophyll mapping is possible in forest ecosystems with diverse vegetation densities and structures.  
+
+The implementation of the U-Net model streamlines the chlorophyll content mapping process, minimizing the uncertainties typically associated with post-processing steps in traditional inversion approaches that integrate satellite data and RTMs. This comprehensive deep learning approach ensures the reliability, precision, and real-world applicability of chlorophyll content mapping facilitated by the seamless integration of the U-Net model with Sentinel-2 imagery and RTMs. These findings contribute significantly to enhancing our understanding of the physiological and health status of forests, as well as carbon stocks, at an unprecedented spatial resolution, with potential applications in forest management, climate change, and early detection of forest disturbances.  
+
+本研究强调了深度学习模型在使用基于叶绿素反演的辐射传输模型（RTMs）和Sentinel-2多光谱影像进行高分辨率连续森林叶绿素含量制图方面的潜力，即使在参考数据稀疏的情况下也是如此。所提出的U-Net模型展现了捕捉研究区域森林叶绿素含量复杂空间模式的强大能力，表明在具有不同植被密度和结构的森林生态系统中实现稳健的叶绿素制图是可行的。  
+
+U-Net模型的实施简化了叶绿素含量制图过程，最大限度地减少了传统反演方法中与卫星数据和辐射传输模型集成的后处理步骤相关的不确定性。这种全面的深度学习方法通过U-Net模型与Sentinel-2影像和辐射传输模型的无缝集成，确保了叶绿素含量制图的可靠性、精确性和实际应用性。这些发现显著增强了我们对森林生理和健康状况以及碳储量的理解，并以前所未有的空间分辨率提供了潜在的应用价值，可用于森林管理、气候变化和森林干扰的早期检测。
