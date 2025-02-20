@@ -8,4 +8,3 @@ Hi, this is Frank Yan. I've been recording my learning notes on this site since 
 
 Currently I'm here [📍 Wageningen University @ Research](https://maps.app.goo.gl/4sHSU6Q1YbxcMfoV9)
 
-“有很多梦是遥不可及的，但是只要坚持，就可能实现”

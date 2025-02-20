@@ -19,7 +19,14 @@ draft = false
 4. 分析和预测数据
 
 
+不同方法间是递进和逐步优化的关系，需要有理论支持
 
+$$
+\hat{f}(x, $$
+\hat{f}(x, y) = \frac{1}{n h_x h_y} \sum_{i=1}^n K\left(\frac{x - x_i}{h_x}\right) K\left(\frac{y - y_i}{h_y}\right)
+$$
+\hat{f}(x, y) = \frac{1}{n h_x h_y} \sum_{i=1}^n K\left(\frac{x - x_i}{h_x}\right) K\left(\frac{y - y_i}{h_y}\right)y) = \frac{1}{n h_x h_y} \sum_{i=1}^n K\left(\frac{x - x_i}{h_x}\right) K\left(\frac{y - y_i}{h_y}\right)
+$$
 
 
 
