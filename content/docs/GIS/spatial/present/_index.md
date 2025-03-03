@@ -4,6 +4,8 @@ date = 2025-03-03T09:38:35+01:00
 draft = false
 +++
 
+![Poster](./images/Poster_group_3b_final-page1.png)
+
 [toc]
 
 ### Version 1: **Structured and Detailed Presentation**
