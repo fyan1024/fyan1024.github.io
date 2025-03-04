@@ -10,35 +10,57 @@ draft = false
 
 ### Version 1: **Structured and Detailed Presentation**
 
----
+**Good morning everyone,** Thank you for being here. Today, I'll be presenting the work of Group 3b, titled “Mapping Crop Suitability Changes in Denmark as a Result of Climate Change.” My name is Xiaolu Yan. 
 
-**Good morning everyone,**
+Our research focuses on understanding how climate change **affects the suitability** of key crops in Denmark, particularly winter wheat and barley, and how Danish farmers can build **climate-resilient** agriculture.
 
-Thank you for being here. Today, I’ll be presenting the work of Group 3b, titled “Mapping Crop Suitability Changes in Denmark as a Result of Climate Change.” My teammates are Jip van Groenewoud, Fanny Ningrum, Annika Robben, and Xiaolu Yan. Our research focuses on understanding how climate change affects the suitability of key crops in Denmark, particularly winter wheat and barley, and how Danish farmers can build climate-resilient agriculture.
 
-Let’s begin with the **Introduction**. Denmark is one of the most intensively cultivated countries in Europe, with agricultural land covering about 62% of its total area. Crops like wheat and barley are not only vital for the food supply but also contribute significantly to export revenue. However, climate change is altering this landscape. Shifts in temperature and precipitation patterns are threatening the productivity and sustainability of these crops. Our research aimed to anticipate these changes and propose adaptive strategies to ensure food security and economic stability.
+Let me start by setting the **context**. Denmark is one of the most intensively cultivated countries in Europe, with agricultural land covering about 62% of its total area. 
+Figure 1 shows the distribution of cultivated land for barley and wheat crops in Denmark in 2018. We can visualize how densely those cultivated land is distributed.
 
-The **Research Questions** guiding our study were:
+Key crops like wheat and barley are not only vital for domestic food supply but also significantly account for / contribute to export revenue. Denmark's exports of these two crops can reach 450 million usd per year. 
+
+However, climate change is altering the agricultural landscape through shifts in temperature and precipitation patterns. These changes threaten the productivity and sustainability of these essential crops. 
+
+
+Our research aimed to address two **critical questions**: 
+
 1. How do projected changes in climatic conditions and soil characteristics affect the suitability of winter wheat and barley in Denmark under RCP 2.6 and RCP 8.5 scenarios?
-2. How can Danish farmers build climate-resilient agriculture?
+2.  How can Danish farmers build climate-resilient agriculture? To answer these questions, we developed a systematic approach to assess current and future crop suitability while integrating key environmental and agricultural factors.
 
-To answer these questions, we developed a **Methodology** that involved mapping crop suitability from 1971 to 2020 and projecting future suitability for four time periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. We used Representative Concentration Pathways (RCP) 2.6 and 8.5 to model different climate scenarios. Additionally, we incorporated soil parameters like pH, salinity, and light intensity to enhance the accuracy of our agricultural model.
 
-Now, let’s discuss the **Results**.
-- Figure 4 shows that barley adapts better to diverse soils, particularly in sandy, low-nutrient areas, which are common in western Denmark. Wheat, on the other hand, prefers nutrient-rich soils, found mainly in the east.
-- Our research revealed that temperature is the primary factor influencing future crop suitability. Under both RCP scenarios, higher temperatures improved growth conditions for both wheat and barley.
-- The RCP 8.5 scenario predicts higher overall suitability compared to RCP 2.6, as seen in Figure 6. However, sandy areas are expected to face nutrient loss due to increased precipitation, which could impact wheat, which thrives in nutrient-rich environments.
+To answer these questions, we developed a **Methodology** involving two main steps:
 
-In the **Discussion & Conclusion**, we found that while barley is currently more adaptable, long-term productivity will require strategic soil management. For instance, crop rotations with legumes, such as runner beans, can mitigate nutrient loss and soil acidification. Additionally, practices like cover cropping, no-till farming, and optimized ploughing strategies can enhance climate resilience.
+1. Base Mapping: We first mapped the historical suitability of wheat and barley in Denmark from 1971 to 2020, using data on soil characteristics, temperature, and precipitation.
+2. Future Projections: We projected future suitability for four time periods — 2021-2040, 2041-2060, 2061-2080, and 2081-2100 — under two climate scenarios: RCP 2.6 (low emissions) and RCP 8.5 (high emissions).
+
+
+Then for the **Results**.
+
+1. Figure 4 shows that barley adapts better to diverse soils, particularly in sandy, low-nutrient areas, which are common in western Denmark. Wheat, on the other hand, prefers nutrient-rich soils, found mainly in the east.
+2. For future predictions, our research revealed that temperature is the primary factor influencing future crop suitability. Under both RCP scenarios, higher temperatures improved growth conditions for both wheat and barley.
+3. As for the details of two RCP scenarios, we find the RCP 8.5 scenario predicts higher overall suitability compared to RCP 2.6, as seen in Figure 6. 
+
+In the RCP8.5 scenario, the growth exhibits a linear trend due to the simplicity of our model, which incorporates fewer variables. In contrast, under the RCP2.6 scenario, the growth tends to level off in the later stages.
+
+
+However, sandy areas are expected to face nutrient loss due to increased precipitation and soil leaching, which could impact wheat, which thrives in nutrient-rich environments.
+
+So our advice is that Danish farmers should grow crops that protect the environment.
+
+For instance, crop rotations with legumes, such as runner beans, can mitigate nutrient loss and soil acidification. Additionally, practices like cover cropping, no-till farming, and optimized ploughing strategies can enhance climate resilience.
 
 Our **Recommendations** include:
-1. Developing an improved agricultural model that incorporates additional parameters like pH, light intensity, and salinity.
-2. Consulting local farmers to integrate their expertise and address their concerns, ensuring that advice is contextually relevant.
+
+1. Developing an improved agricultural model that incorporates additional parameters like pH, light intensity, and salinity. More parameters will fit adjustments better.
+2. Consulting local farmers to integrate their expertise and address their concerns, ensuring that advice is contextually relevant. Ensure their own needs and traditional knowledge are considered.
 3. Conducting in-depth research to evaluate the feasibility of cultivating crops for the EAT-Lancet diet in Denmark.
 
 In conclusion, our research highlights the importance of proactive adaptation strategies to ensure the sustainability of Denmark’s agricultural sector. By improving soil health and implementing resilient farming practices, Danish farmers can mitigate the adverse effects of climate change.
 
-Thank you for your attention. I’ll now open the floor for questions.
+Thank you for your attention. My contribution in this work are mainly programming and data anlysis. 
+
+I'll now open the floor for questions.
 
 ---
 
